@@ -1,6 +1,4 @@
-__pychache__
-env
-services/users/htmlcov/index.html
+.env
 
 ### Node ###
 # Logs

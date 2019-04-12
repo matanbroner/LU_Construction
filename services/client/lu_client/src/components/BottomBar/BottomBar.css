@@ -1,0 +1,58 @@
+
+#bottomBar{
+    background-color: #6b954f;
+    margin-top: 30vh;
+    z-index: -1;
+    position: absolute;
+    width:100%;
+}
+
+#bottomLogo{
+    max-width:40%;
+    height:auto;
+}
+
+@media (min-width: 1100px)
+{
+    #bottomBar{
+        height: 80px;
+    }
+    .navbar-nav
+    {
+        margin-top: 90px;
+        vertical-align: bottom;
+    }
+    .navbar-nav > a {
+        margin-left:6px;
+        margin-right:6px;
+        color: white;
+    }
+
+    .mainLogo{
+        margin-left: 30px;
+        max-width:90%;
+        height:auto;
+    }
+}
+
+
+#socialTags{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.navbar-nav > .socialMediaTag{
+    margin: 0;
+}
+
+svg:not(:root).svg-inline--fa{
+    font-size: 24px;
+    color: white;
+    margin-left:6px;
+    margin-right:6px;
+    cursor: pointer;
+}
+svg:not(:root).svg-inline--fa:hover{
+    color: rgba(0,0,0,.5);
+}

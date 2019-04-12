@@ -4,10 +4,62 @@ version: '3.7'
 services: 
   
   users:
+    build:
+      context: ./services/users
+      dockerfile: Dockerfile.users
+    volumes:
+      - './services/users:/usr/src/app'
+    ports: 
+      - 5000:5000
+    depends_on:
+      - mongo
+      
+  mongo:
+    container_name: mongo
+    image: mongo
+    command: mongod --port 27018
+    ports:
+      - '27018:27018'
+    volumes:
+      - lu_volume:/var/lib/db/data
   
   client:
-
-  server:
+    build:
+      context: ./services/client/lu_client
+      dockerfile: Dockerfile.client
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - './services/client/lu_client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    depends_on:
+      - mongo
 
   nginx:
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile.nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - client
+      - projects
+      - users
+
+  projects:
+    build:
+      context: ./services/projects
+      dockerfile: Dockerfile.projects
+    volumes:
+      - './services/projects:/usr/src/app'
+    ports: 
+      - 5100:5100
+    depends_on:
+      - mongo
+
+volumes:
+  lu_volume:
 
