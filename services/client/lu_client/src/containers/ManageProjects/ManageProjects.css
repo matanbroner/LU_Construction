@@ -1,0 +1,158 @@
+
+#allProjectsWrapper{
+    width: 90%;
+}
+
+.editButton {
+    display: none;
+    width: 60%;
+    height: 30%;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background: #f58f3d;
+    border-color: #ac642d;
+    color: white;
+    border-radius: 10px;
+    padding-top: 0.5vh;
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+
+#editButtonWrapper{
+    position: absolute;
+	top: 0; right: 0;
+	bottom: 0; left: 0;
+	width: 100%;
+    height: 100%; 
+    border-radius: 10px;
+	text-align: center;
+	opacity: 0;
+	-webkit-transition: opacity 0.6s;
+	-moz-transition: opacity 0.6s;
+	transition: opacity 0.6s;
+    vertical-align:middle;
+    line-height: 100%;
+    padding-top: 20%;
+}
+
+#editButtonWrapper:hover{
+    opacity: 1;
+}
+
+#editButtonWrapper:hover > .editButton {
+	display: inline-table;
+    vertical-align:middle;
+}
+
+#manageProjectsTitleRow{
+    margin: 5vh auto;
+}
+
+#createProjectButton{
+    margin-top: 1vh;
+    width: 100%;
+    height: 80%;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background: #10a400;
+    border-color: #106909;
+    color: white;
+    border-radius: 10px;
+    padding-top: 0.5vh;
+    font-size: 1.1vw;
+    font-weight: 500;
+}
+
+#submitRow{
+    display: flex;
+    justify-content: center;
+}
+
+#submitProject{
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background: #10a400;
+    border-color: #106909;
+    color: white;
+    border-radius: 10px;
+    padding-top: 0.5vh;
+    font-size: 1.1vw;
+    font-weight: 500;
+    width: 200px;
+    height: 45px;
+}
+
+#projectName{
+    border: none;
+    font-size: 35px;
+    font-weight: 500;
+    width: 90%;
+}
+
+#projectName:input:-internal-autofill-selected{
+    background: none;
+}
+
+#projectName:focus{
+    border: black;
+}
+
+#youtubeList{
+    margin-bottom: 5vh;
+}
+
+#fileUploader{
+    max-width: 80%;
+    margin: 30px auto;
+}
+
+#fileUploader {
+    text-align: center;
+}
+
+.dzu-submitButton{
+    display: none;
+}
+
+#fileUploader > .dzu-dropzone{
+    margin: 4vh auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#fileUploader > .dzu-dropzone > .dzu-inputLabel{
+    color: #83ab4a;
+}
+
+#fileUploader > .dzu-dropzone > .dzu-inputLabelWithFiles{
+    max-width: 30%;
+    margin: 2vh auto -3vh;
+    color:  #83ab4a;
+}
+
+#editProjectForm{
+    margin-top: 3vh;
+}
+
+#editProjectForm > .row > .col > .form-group > .form-control{
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+}
+
+#editProjectForm > .row > .col > .form-group > .input-group-prepend > .form-control{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#editProjectForm > .row > .col > .form-group > .input-group-prepend > .input-group-text{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#editProjectForm > .row > .col > .form-group  > label{
+    font-weight: bold;
+}

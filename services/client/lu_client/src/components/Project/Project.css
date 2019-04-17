@@ -1,0 +1,81 @@
+
+#projectContentWrapper{
+
+    height: 100vh;
+}
+
+#projectDetailsWrapper{
+    padding-left: 10%;
+    margin: 2% auto;
+}
+
+#projectTitle{
+    font-size: 2rem;
+    color: #767c82;
+}
+
+#projectDescription{
+    max-width: 50vw;
+    color: #52565a;
+}
+
+#gallery{
+    padding-left: 10%;
+}
+
+#projectParamsWrapper{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    background: white;
+    padding-top: 2%;
+    margin-top: 6%;
+    max-height: 70vh;
+    text-align: center;
+    color: #767c82
+}
+
+
+#detailsHeader{
+    margin-bottom: 5vh;
+    font-size: 1.5vw;
+    margin-top: 2vh;
+}
+
+#getAnEstimatePrompt{
+    padding-top: 10vh;
+    font-style: italic;
+}
+
+#getAnEstimatePrompt > button{
+    background-color: #749357;
+    border-radius   : 9px;
+    width: 90%;
+    height: 40px;
+    font-weight: bold;
+    color: white;
+    border: #465935;
+}
+
+.image-gallery {
+    width: 90%;
+    max-height: 70vh;
+}
+
+.image-gallery-slide img {
+    max-height: 90vh;
+    object-fit: cover;
+    overflow: hidden;
+    object-position: center center;
+    border-radius: 4px;
+    
+}
+
+.fullscreen .image-gallery-slide img {
+    max-height: 100vh;
+}
+
+@media(max-height: 400px){
+    #galleryRow{
+        min-height: 150vh;
+    }
+}

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const ProjectPreview = (props) => {
 
     var styles = {
-        backgroundImage: "url("+props.image+")"
+        backgroundImage: "url("+props.project.coverImage+")"
     }
 
     return(
@@ -22,9 +22,9 @@ const ProjectPreview = (props) => {
             </div>
             </div>
             <div id="descriptionWrapper">
-                <span id="description"><strong>House Built From the Ground Up in San Jose</strong></span>
+                <span id="description"><strong>{props.project.projectName}</strong></span>
                 <br/>
-                <span id="photos">36 Photos</span>
+                <span id="photos">{props.project.mediaCount} Photos</span>
             </div>
         </Col>
     )

@@ -2,6 +2,7 @@
 #container{
     cursor: pointer;
     margin-bottom: 15px;
+    
 }
 
 #wrap{
@@ -9,6 +10,7 @@
 }
 
 #image{
+    
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
@@ -43,7 +45,7 @@
 }
 
 #descriptionWrapper{
-
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     padding: 15px 20px 10px;
     background-color: #ebe9ec;
     border-bottom-left-radius: 20px;

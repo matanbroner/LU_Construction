@@ -10,6 +10,7 @@ import TestimonialPreview from '../../components/TestimonialPreview/TestimonialP
 import Spinner from '../../components/Spinner/Spinner'
 import ProjectPreview from '../../components/ProjectPreview/ProjectPreview'
 import ScrollableSection from '../../components/ScrollableSection/ScrollableSection'
+import TestimonialItem from '../../components/TestimonialItem/TestimonialItem'
 
 let review = "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 
@@ -18,19 +19,22 @@ class HomePage extends React.PureComponent{
         super(props)
 
         this.state={
-
+            loading: false
         }
+    }
+
+    componentWillMount(){
+        
     }
 
     render(){
         let projects = []
-        for (let i = 0; i<10; i++)
+        for (let i = 0; i<6; i++)
         {
             projects.push(<ProjectPreview location="San Jose" image="https://st.hzcdn.com/fimgs/ae91b2e70b31636c_3374-w500-h400-b0-p0--home-design.jpg" colSize={6}/>)
         }
         return(
             <div>
-                
                 <div className="bannerimage">
                     <Jumbotron fluid>
                         <Container>
@@ -42,7 +46,7 @@ class HomePage extends React.PureComponent{
                     </Jumbotron>
                 </div>
 
-                <Row>
+                <Row id="contentRow">
                 <Col className="projectsPreview" lg={8} md={8}>
                     <Container>
                         <h3 id="projectsPreviewHeader">Our work may impress you...</h3>
@@ -52,16 +56,15 @@ class HomePage extends React.PureComponent{
                             </Row>
                         </MediaQuery>
                         <MediaQuery query="(max-width: 901px)">
-                            <ScrollableSection>
+                            <ScrollableSection orient='x'>
                                 {projects}
                             </ScrollableSection>
                         </MediaQuery>
                     </Container>
                 </Col>
                 <Col className="testimonialsPreview" lg={4} md={4}>
-                    <Container>
+                    <Container id="testimonialsPreviewContent">
                         <h3 id="testimonialsPreviewHeader">What people are saying</h3>
-                        <TestimonialPreview rating={4} name="Matan Broner" review={review}/>
                         <TestimonialPreview rating={4} name="Matan Broner" review={review}/>
                         <TestimonialPreview rating={4} name="Matan Broner" review={review}/>
                         <TestimonialPreview rating={4} name="Matan Broner" review={review}/>

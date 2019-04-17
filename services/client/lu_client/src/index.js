@@ -1,21 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route} from 'react-router-dom'
+
 import HomePage from './containers/HomePage/HomePage';
 import SignInPage from './containers/SignInPage/SignInPage';
+import TestimonialsPage from './containers/TestimonialsPage/TestimonialsPage'
+import ProjectsPage from './containers/ProjectsPage/ProjectsPage'
+import UserDashboard from './containers/UserDashboard/UserDashboard'
+
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import BottomBar from './components/BottomBar/BottomBar'
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route} from 'react-router-dom'
 import defaultStyling from './index.css'
+import { createBrowserHistory as createHistory } from 'history'
+
+const history = createHistory()
 
 
 ReactDOM.render((
-    <BrowserRouter>
+    <Router history={history}>
         <NavigationBar/>
         <Route exact path="/" component={HomePage}/>
-        <Route path="/signin" component={SignInPage}/>
+        <Route path="/sign_in" component={SignInPage}/>
+        <Route path="/testimonials" component={TestimonialsPage}/>
+        <Route path="/projects" component={ProjectsPage}/>
+        <Route path="/user_dash" component={UserDashboard}/>
         <BottomBar/>
-    </BrowserRouter>
+    </Router>
 ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

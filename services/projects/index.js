@@ -13,7 +13,9 @@ var app = express()
 
 app.use(express.json());
 
-var whitelist = [process.env.CLIENT_URL]
+const Project = require('./models/Project')
+
+var whitelist = [process.env.CLIENT_URL, process.env.AUTH_URL]
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -24,11 +26,18 @@ var corsOptions = {
   }
 }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 var api = require('./utils/api')
 
 app.use('/api', api)
+
+app.get('/all', function(req, res){
+  Project.find({}, (err, projects) => {
+    if (err) return res.status(404).json({badFetch: "Unable to fetch projects"})
+    else res.json(projects)
+  })
+})
 
 var port = 5100
 app.listen(port, () => console.log(`Projects Service listening on port ${port}`))

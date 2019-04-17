@@ -1,0 +1,75 @@
+
+#allContent{
+    
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 90%;
+    padding-bottom: 10vh;
+
+}
+
+#reviewwrapper{
+    width: 90%;
+    height: 100%;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    background: white;
+    padding-top: 8%;
+}
+
+#testimonialCreateTitle{
+    margin: 8.5% auto;
+    color: #757c83;
+    font-size: 2vw;
+    font-weight: 300;
+
+}
+
+#reviewlabel{
+    width: 80%;
+    margin: auto;
+    text-align: left;
+    margin-bottom: 2%;
+}
+
+#reviewform{
+    margin-top: 10%;
+}
+
+#name{
+    width: 80%;
+    margin: auto;
+}
+
+#email{
+    width: 80%;
+    margin: auto;
+}
+
+#projectType{
+    width: 80%;
+    margin: auto;
+    height: 40px;
+    background-color: white;
+    color: #757c83;
+}
+
+#description{
+    width: 80%;
+    margin: auto;
+}
+
+#submitreview{
+    margin-bottom: 3vh;
+    background-color: #749357;
+    border-radius   : 9px;
+    width: 40%;
+    height: 40px;
+    font-weight: bold;
+    color: white;
+    border: #465935;
+}
+

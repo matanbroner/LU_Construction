@@ -66,14 +66,25 @@
   }
 
   .testimonialsPreview{
-    height: 100%;
+    margin-bottom: -10vh;
+    padding-bottom: 10vh;
     padding-top: 2%;
     border-radius: 1px;
     border: 1px solid #e2e1e4;
     
+    
+}
+
+#testimonialsPreview{
+  padding-right: 0;
 }
   
   #testimonialsPreviewHeader{
     text-align: center;
     color: #b0b0b0;
+}
+
+#contentRow{
+  width: 100%;
+  margin-left: 0
 }

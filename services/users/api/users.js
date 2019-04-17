@@ -1,7 +1,7 @@
 
 const express = require("express")
 const router = express.Router()
-var bcrypt   = require('bcrypt-nodejs');
+var bcrypt   = require('bcryptjs');
 const jwt = require("jsonwebtoken")
 const keys = require('../config/keys')
 const passport = require('passport')
@@ -22,6 +22,7 @@ router.post('/register', (req, res) => {
             return res.status(400).json({ email: "Email already exists"})
         } else {
             const newUser = new User({
+                name: req.body.name,
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
@@ -41,7 +42,6 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-
     const {errors, isValid} = validateLoginInput(req.body)
     if (!isValid)
         return res.status(400).json(errors)
@@ -49,12 +49,14 @@ router.post('/login', (req, res) => {
     const username = req.body.username
     const password = req.body.password
 
+
     User.findOne({ username }).then(user => {
         if (!user)
             return res.status(404).json({usernamenotfound: "Username not found"})
 
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (isMatch){
+
+        bcrypt.compare(password, user.password, function(err, response){
+            if (response){
                 const payload = {
                     id: user.id,
                     username: user.username
@@ -62,18 +64,19 @@ router.post('/login', (req, res) => {
 
                 jwt.sign(
                     payload,
-                    keys.secretOrKey,
+                    process.env.SECRET_KEY,
                     {
                         expiresIn: 31556926 // 1 year in seconds
                     },
                     (err, token) => {
-                        res.json({
+                            res.status(200).json({
                             success: true,
-                            token: "Bearer " + token
+                            token: "Bearer " + token,
+                            name: user.name
                         })
                     }
                 )
-            } else {
+            } else if (err){
                 return res 
                     .status(400)
                     .json({ passwordincorrect: "Password incorrect."})
@@ -82,5 +85,13 @@ router.post('/login', (req, res) => {
         
     })
 })
+
+router.get('/auth',
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {
+    const { user } = req;
+
+    res.status(200).json({ user });
+  });
 
 module.exports = router;

@@ -57,6 +57,8 @@ services:
       - './services/projects:/usr/src/app'
     ports: 
       - 5100:5100
+    links:
+      - users
     depends_on:
       - mongo
 

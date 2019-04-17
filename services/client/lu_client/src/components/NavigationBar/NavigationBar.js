@@ -4,6 +4,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import {Image} from 'react-bootstrap'
 import { faFacebook, faHouzz, faYelp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import urls from '../../assets/constants/urls'
 
 import './NavigationBar.css'
 import mainLogo from '../../assets/photos/Logo.png'
@@ -24,16 +25,16 @@ const NavigationBar = () => {
         </Nav>
         <Nav>
           <Navbar.Text>
-            <FontAwesomeIcon icon={faFacebook}/>
-            <FontAwesomeIcon icon={faYelp}/>
-            <FontAwesomeIcon icon={faHouzz}/>
+            <a href={urls.facebook}><FontAwesomeIcon icon={faFacebook}/></a>
+            <a href={urls.yelp}><FontAwesomeIcon icon={faYelp}/></a>
+            <a href={urls.houzz}><FontAwesomeIcon icon={faHouzz}/></a>
           </Navbar.Text>
-          <Nav.Link as={Link} to='/'>Projects</Nav.Link>
+          <Nav.Link as={Link} to='/projects'>Projects</Nav.Link>
           <Nav.Link as={Link} to='/'>About</Nav.Link>
-          <Nav.Link as={Link} to='/'>Testimonials</Nav.Link>
+          <Nav.Link as={Link} to='/testimonials'>Testimonials</Nav.Link>
           <Nav.Link as={Link} to='/'>Get an Estimate</Nav.Link>
           <Nav.Link as={Link} to='/'>Contact</Nav.Link>
-          <Nav.Link as={Link} to='/signin'>Sign In</Nav.Link>
+          <Nav.Link as={Link} to='/sign_in'>Sign In</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

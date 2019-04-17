@@ -1,0 +1,16 @@
+#progressBarWrapper{
+    height: 100%;
+    width: 100%;
+    padding-top: 15%;
+    text-align: center;
+}
+
+#progressBarWrapper > .progress{
+    border-radius: 20px;
+    height: 2.7rem;
+    margin-bottom: 30px;
+}
+
+#progressBarWrapper > .progress > .progress-bar{
+    background-color: #74be57;
+}

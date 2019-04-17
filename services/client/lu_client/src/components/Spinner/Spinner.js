@@ -2,10 +2,12 @@ import React from 'react'
 import styles from './Spinner.css'
 
 
-const Spinner = () => {
+const Spinner = (props) => {
 
     return(
-        <div className="spinner"></div>
+        <div id="spinnerWrapper" style={props.wrapperStyles}>
+            <div className="spinner"></div>
+        </div>
     )
 }
 

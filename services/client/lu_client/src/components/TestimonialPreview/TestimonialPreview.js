@@ -6,7 +6,7 @@ import styles from './TestimonialPreview.css'
 const TestimonialPreview = (props) =>{
 
     return(
-        <div>
+        <div id="testimonialPreviewContent">
             <StarRatings
             starDimension='20px'
             starSpacing='2px'

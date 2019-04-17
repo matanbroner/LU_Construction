@@ -5,7 +5,9 @@ const Schema = mongoose.Schema
 const ProjectSchema = new Schema({
     projectId: {
         type: String,
-        required: true,
+    },
+    projectName:{
+        type: String,
     },
     createDate:{
         type: Date,
@@ -13,15 +15,14 @@ const ProjectSchema = new Schema({
     },
     bucketId: {
         type: String,
-        required: true
     },
     mediaCount: {
         type: Number,
-        required: true
+        default: 0
     },
     coverImage: {
         type: String,
-        default: 'http://clipart-library.com/img1/1394305.png'
+        default: ''
     },
     youtubeLinks: {
         type: [String]
@@ -33,6 +34,10 @@ const ProjectSchema = new Schema({
     priceMax: {
         type: Number,
         default: 0
+    },
+    featured: {
+        type: Boolean,
+        default: false
     }
 })
 

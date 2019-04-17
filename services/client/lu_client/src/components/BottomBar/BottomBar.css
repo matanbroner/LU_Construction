@@ -1,10 +1,13 @@
 
 #bottomBar{
     background-color: #6b954f;
-    margin-top: 30vh;
+    margin-top: 10vh;
+    margin-bottom: 0 !important;
     z-index: -1;
     position: absolute;
-    width:100%;
+    left:0;
+    right: 0;
+    display: flex;
 }
 
 #bottomLogo{
@@ -12,26 +15,24 @@
     height:auto;
 }
 
+#infoTag{
+    margin: auto 4vw;
+    color: white;
+}
+
+#createContactAction{
+    max-width: 40vw;;
+}
+
+#submitContactAction{
+    background: #6b954f;
+    border: 0;
+}
+
 @media (min-width: 1100px)
 {
     #bottomBar{
         height: 80px;
-    }
-    .navbar-nav
-    {
-        margin-top: 90px;
-        vertical-align: bottom;
-    }
-    .navbar-nav > a {
-        margin-left:6px;
-        margin-right:6px;
-        color: white;
-    }
-
-    .mainLogo{
-        margin-left: 30px;
-        max-width:90%;
-        height:auto;
     }
 }
 
