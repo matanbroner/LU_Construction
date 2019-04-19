@@ -12,7 +12,6 @@
     margin-bottom: 0.25vh;
     padding-left: 15px;
     height: 28px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 .listModuleItem:first-child{
@@ -52,7 +51,7 @@
 #inputAndSubmit > input{
     border-radius: 10px;
     height: 28px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
 
 }
 

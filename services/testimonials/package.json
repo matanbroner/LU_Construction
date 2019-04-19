@@ -1,0 +1,11 @@
+{
+  "name": "testimonials",
+  "version": "1.0.0",
+  "description": "Testimonials service for LU Construction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

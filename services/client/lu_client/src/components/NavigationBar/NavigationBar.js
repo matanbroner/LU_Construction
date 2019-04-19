@@ -33,8 +33,8 @@ const NavigationBar = () => {
           <Nav.Link as={Link} to='/'>About</Nav.Link>
           <Nav.Link as={Link} to='/testimonials'>Testimonials</Nav.Link>
           <Nav.Link as={Link} to='/'>Get an Estimate</Nav.Link>
-          <Nav.Link as={Link} to='/'>Contact</Nav.Link>
-          <Nav.Link as={Link} to='/sign_in'>Sign In</Nav.Link>
+          <Nav.Link as={Link} to='/contact'>Contact</Nav.Link>
+          <Nav.Link as={Link} to='/sign_in'>{localStorage.getItem('jwtToken') ? 'Profile' : 'Sign In'}</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -23,8 +23,8 @@ class ListModule extends React.PureComponent{
     componentDidMount(){
         let items = this.props.items.map(item => {
             return {
-                id: uuid(),
-                item: item
+                id: item.id,
+                item: item.item
             }
         })
         this.setState({
@@ -43,12 +43,11 @@ class ListModule extends React.PureComponent{
         this.setState({
             items: items,
             newItem: ''
-        })
-        this.props.manageItems(items)
+        },this.props.manageItems(items))
+        
     }
 
     removeItem(id){
-        console.log(id)
         let items = this.state.items
         let newItems = items.filter(item => item.id !== id)
         this.setState({items: newItems})

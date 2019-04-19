@@ -31,7 +31,11 @@
     margin-top: 6%;
     max-height: 70vh;
     text-align: center;
-    color: #767c82
+    color: #767c82;
+    max-height: 500px;
+    min-width: 250px;
+    overflow: auto;
+    padding-bottom: 20px;
 }
 
 

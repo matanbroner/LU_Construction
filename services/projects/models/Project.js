@@ -9,6 +9,14 @@ const ProjectSchema = new Schema({
     projectName:{
         type: String,
     },
+    projectLocation: {
+        type: String,
+        default: 'No Location Given'
+    },
+    projectDescription: {
+        type: String,
+        default: ''
+    },
     createDate:{
         type: Date,
         default: Date.now(),
@@ -25,7 +33,7 @@ const ProjectSchema = new Schema({
         default: ''
     },
     youtubeLinks: {
-        type: [String]
+        type: [Object]
     },
     priceMin: {
         type: Number,

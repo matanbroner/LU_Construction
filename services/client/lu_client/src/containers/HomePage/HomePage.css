@@ -5,12 +5,6 @@
   }
 
   .bannerimage {
-    /* width: 100%;
-    background-image: url('../../assets/photos/homePageBanner.png');
-    height: 20em;
-    background-size:     cover;                 
-    background-repeat:   no-repeat;
-    background-position: center; */
 
     background-repeat: no-repeat;
     background-image: url('../../assets/photos/homePageBanner.png');

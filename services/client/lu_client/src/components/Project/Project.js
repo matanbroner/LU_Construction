@@ -10,59 +10,9 @@ import Row from 'react-bootstrap/Row'
 import SkyLight from 'react-skylight';
 import MediaQuery from 'react-responsive'
 import Spinner from '../Spinner/Spinner';
+import {formatDate} from '../../assets/utils/stringFormat'
 const superagent = require('superagent');
 
-
-const images = [
-    {
-      original: 'https://st.hzcdn.com/simgs/faa1fe4d0b316391_9-3411/--spaces.jpg',
-      thumbnail: 'https://st.hzcdn.com/simgs/faa1fe4d0b316391_9-3411/--spaces.jpg',
-    },
-    {
-      original: 'https://st.hzcdn.com/simgs/faa1fe4d0b316391_9-3411/--spaces.jpg',
-      thumbnail: 'https://st.hzcdn.com/simgs/faa1fe4d0b316391_9-3411/--spaces.jpg'
-    },
-    {
-      original: 'https://st.hzcdn.com/simgs/1f71e1660b316356_9-1750/--spaces.jpg',
-      thumbnail: 'https://st.hzcdn.com/simgs/1f71e1660b316356_9-1750/--spaces.jpg'
-    },
-    {
-        original: 'https://st.hzcdn.com/simgs/0ea107b20b3162ea_9-3252/--spaces.jpg',
-        thumbnail: 'https://st.hzcdn.com/simgs/0ea107b20b3162ea_9-3252/--spaces.jpg',
-      },
-      {
-        original: 'https://www.youtube.com/embed/6pxRHBw-k8M',
-        thumbnail: 'https://www.youtube.com/embed/6pxRHBw-k8M'
-      },
-      {
-        original: 'http://lorempixel.com/250/250/nature/3/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/3/'
-      },
-      {
-        original: 'https://st.hzcdn.com/fimgs/ae91b2e70b31636c_3374-w500-h400-b0-p0--home-design.jpg',
-        thumbnail: 'https://st.hzcdn.com/fimgs/ae91b2e70b31636c_3374-w500-h400-b0-p0--home-design.jpg',
-      },
-      {
-        original: 'http://lorempixel.com/250/250/nature/2/',
-        thumbnail: 'http://lorempixel.com/250/250/nature/2/'
-      },
-      {
-        original: 'http://lorempixel.com/250/250/nature/3/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/3/'
-      },
-      {
-        original: 'https://st.hzcdn.com/fimgs/ae91b2e70b31636c_3374-w500-h400-b0-p0--home-design.jpg',
-        thumbnail: 'https://st.hzcdn.com/fimgs/ae91b2e70b31636c_3374-w500-h400-b0-p0--home-design.jpg',
-      },
-      {
-        original: 'http://lorempixel.com/250/250/nature/2/',
-        thumbnail: 'http://lorempixel.com/250/250/nature/2/'
-      },
-      {
-        original: 'http://lorempixel.com/250/250/nature/3/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/3/'
-      }
-  ]
 
 let lorem1 = "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 
@@ -86,38 +36,56 @@ class Project extends React.PureComponent{
     }
 
     componentDidMount(){
-      this.fetchProject()
+      this.fetchProject(this.props.match.params.projectId)
     }
 
-    fetchProject(){
+    componentWillReceiveProps(newProps){
+      if (newProps.match.params.projectId !== this.props.match.params.projectId)
+      {
+        this.setState({loading: true}, this.fetchProject(newProps.match.params.projectId))
+      }
+    }
+
+    fetchProject(id){
       superagent
-          .get(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/' + this.props.match.params.projectId)
+          .get(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/api/' + id)
           .then(res => {
               if (res){
                   this.setState({
                       project: res.body
-                  }, this.fetchProjectPhotos())
+                  }, this.fetchProjectPhotos(id))
               }
           })
   }
 
-  fetchProjectPhotos(){
+  fetchProjectPhotos(id){
     superagent
-        .get(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/api/photos/get/' + this.props.match.params.projectId)
+        .get(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/api/photos/get/' + id)
         .then(res => {
             this.setState({photos: res.body, loading: false})
         })
     }
 
     getPhotoUrls(){
-      let urls = this.state.photos.forEach(photo => photo.url)
+      let urls = this.state.photos.filter(photo => photo.url !== this.state.project.coverImage)
+      .map(photo => {
+        return {
+            original: photo.url,
+            thumbnail: photo.url
+        }
+      })
+      if(this.state.project.coverImage){
+        urls.unshift({
+            original: this.state.project.coverImage,
+            thumbnail: this.state.project.coverImage
+        })
+      }
       return urls
     }
 
 
     render()
       {
-        console.log(this.props.match.params)
           return (
             this.state.loading 
             ? <Spinner/>
@@ -132,10 +100,10 @@ class Project extends React.PureComponent{
                     </Col>
                     <Col md={2} id="projectParamsWrapper" className="d-none d-lg-block">
                         <h5 id="detailsHeader">Project Details</h5>
-                        <p><h6>Project Year:</h6>2018</p>
-                        <p><h6>Project Cost:</h6>$750,001 - $1,000,000</p>
+                        <p><h6>Project Date:</h6>{formatDate(this.state.project.createDate)}</p>
+                        <p><h6>Project Cost:</h6>${this.state.project.priceMin.toLocaleString()} - ${this.state.project.priceMax.toLocaleString()}</p>
                         <p><h6>Project Type:</h6>New Construction</p>
-                        <p><h6>Project Location:</h6>San Jose, CA</p>
+                        <p><h6>Project Location:</h6>{this.state.project.projectLocation}</p>
                         <div id="getAnEstimatePrompt">
                             <p>Like this project? Tell us what your dream house looks like!</p>
                             <button>Get an estimate!</button>

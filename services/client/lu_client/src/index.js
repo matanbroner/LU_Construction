@@ -7,6 +7,8 @@ import SignInPage from './containers/SignInPage/SignInPage';
 import TestimonialsPage from './containers/TestimonialsPage/TestimonialsPage'
 import ProjectsPage from './containers/ProjectsPage/ProjectsPage'
 import UserDashboard from './containers/UserDashboard/UserDashboard'
+import ContactPage from './containers/ContactPage/ContactPage'
+import PageNotFound from './components/PageNotFound/PageNotFound'
 
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import BottomBar from './components/BottomBar/BottomBar'
@@ -23,6 +25,7 @@ ReactDOM.render((
         <Route exact path="/" component={HomePage}/>
         <Route path="/sign_in" component={SignInPage}/>
         <Route path="/testimonials" component={TestimonialsPage}/>
+        <Route path="/contact" component={ContactPage}/>
         <Route path="/projects" component={ProjectsPage}/>
         <Route path="/user_dash" component={UserDashboard}/>
         <BottomBar/>

@@ -8,7 +8,7 @@
     width: 60%;
     height: 30%;
     text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     background: #f58f3d;
     border-color: #ac642d;
     color: white;
@@ -53,7 +53,7 @@
     width: 100%;
     height: 80%;
     text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     background: #10a400;
     border-color: #106909;
     color: white;
@@ -63,6 +63,15 @@
     font-weight: 500;
 }
 
+#skylightTitle{
+    width: 110%;
+    display: flex;
+}
+
+#skylightTitle > button{
+    margin-bottom: 30px;
+}
+
 #submitRow{
     display: flex;
     justify-content: center;
@@ -70,9 +79,24 @@
 
 #submitProject{
     text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     background: #10a400;
     border-color: #106909;
+    color: white;
+    border-radius: 10px;
+    padding-top: 0.5vh;
+    font-size: 1.1vw;
+    font-weight: 500;
+    width: 200px;
+    height: 45px;
+    margin-right: 2vw;
+}
+
+#deleteProject{
+    text-align: center;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background: #db2325;
+    border-color: #851717;
     color: white;
     border-radius: 10px;
     padding-top: 0.5vh;
@@ -86,7 +110,7 @@
     border: none;
     font-size: 35px;
     font-weight: 500;
-    width: 90%;
+    width: 60%;
 }
 
 #projectName:input:-internal-autofill-selected{
@@ -118,7 +142,7 @@
     margin: 4vh auto;
     margin-top: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 #fileUploader > .dzu-dropzone > .dzu-inputLabel{
@@ -133,24 +157,25 @@
 
 #editProjectForm{
     margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
 #editProjectForm > .row > .col > .form-group > .form-control{
     border-radius: 10px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
 }
 
 #editProjectForm > .row > .col > .form-group > .input-group-prepend > .form-control{
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 #editProjectForm > .row > .col > .form-group > .input-group-prepend > .input-group-text{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 #editProjectForm > .row > .col > .form-group  > label{

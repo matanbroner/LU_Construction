@@ -39,5 +39,14 @@ app.get('/all', function(req, res){
   })
 })
 
+// GET ALL FEATURED PROJECTS
+app.get('/featured', (req, res, next) => {
+  Project.find({featured: true}, (err, projects) => {
+      if (err) return res.status(404)
+      if (!projects) return res.status(200).json([])
+      else return res.status(200).json(projects)
+  })
+})
+
 var port = 5100
 app.listen(port, () => console.log(`Projects Service listening on port ${port}`))

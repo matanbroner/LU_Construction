@@ -6,6 +6,7 @@ import ProjectPreview from '../../components/ProjectPreview/ProjectPreview'
 import ListModule from '../../components/ListModule/ListModule'
 import FileProgressBar from '../../components/FileProgressBar/FileProgressBar'
 import PhotoPreviewContainer from '../../components/PhotoPreviewContainer/PhotoPreviewContainer'
+import Toggle from '../../components/Toggle/Toggle'
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
 import Row from 'react-bootstrap/Row'
@@ -13,6 +14,7 @@ import Col from 'react-bootstrap/Col'
 import SkyLight from 'react-skylight';
 import { faPlusCircle, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { formatDateProper } from '../../assets/utils/stringFormat'
 const uuid = require('uuid')
 const superagent = require('superagent');
 require('dotenv').config()
@@ -35,6 +37,7 @@ class ManageProjects extends React.PureComponent{
 
         this.state={
             loading: true,
+            isNewProject: false,
             fileUpload: {
                 uploading: false,
                 totalFiles: 0,
@@ -51,6 +54,7 @@ class ManageProjects extends React.PureComponent{
         this.modifyProjectState = this.modifyProjectState.bind(this)
         this.setChildRef = this.setChildRef.bind(this);
         this.submitProject = this.submitProject.bind(this)
+        this.deleteProject = this.deleteProject.bind(this)
     }
 
     componentDidMount(){
@@ -75,7 +79,6 @@ class ManageProjects extends React.PureComponent{
             projects.push(
                 <Col xs={12} lg={4} id="editableProject" >
                 <ProjectPreview 
-                    location="San Jose" 
                     project={project}
                     colSize={12}/>
                     <div id="editButtonWrapper">
@@ -92,15 +95,21 @@ class ManageProjects extends React.PureComponent{
 
     createProject(){
         let newId = uuid()
-        let project = { projectName: "New Project", projectId: newId}
-        this.setState({ editingId: newId, project: project, photos: [] }, this.customDialog.show())
+        let project = { projectName: "New Project", projectId: newId, featured: false}
+        this.setState({ 
+            isNewProject: true, 
+            editingId: newId, 
+            project: project, 
+            photos: [] }, this.customDialog.show())
     }
 
     editProject(e){
         let project = Object.assign({}, this.state.raw_projects.find(p => p.projectId === e.target.id))
         this.setState({
+            isNewProject: false,
             project: project,
-            editingId: project.projectId
+            editingId: project.projectId,
+            loading: true
         },
             this.fetchProjectPhotos(project.projectId)
             )
@@ -120,6 +129,7 @@ class ManageProjects extends React.PureComponent{
 
     submitProject(e){
         e.preventDefault()
+        this.deletePhotosPermanently()
         superagent
             .post(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/api/modify/' + this.state.editingId)
             .set({'Authorization': localStorage.jwtToken})
@@ -134,7 +144,7 @@ class ManageProjects extends React.PureComponent{
         superagent
             .get(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/api/photos/get/' + id)
             .then(res => {
-                this.setState({photos: res.body}, this.customDialog.show())
+                this.setState({photos: res.body, loading: false}, () => this.customDialog.show())
             })
     }
 
@@ -152,6 +162,47 @@ class ManageProjects extends React.PureComponent{
         this.setState({fileUpload: upload}, () => this.forceUpdate())
     }
 
+    featureProject(bool){
+        let project = this.state.project
+        project.featured = bool
+        this.setState({project})
+    }
+
+    deletePhotosPermanently(){
+        if(this.state.deletedPhotos.length > 0){
+            let keys = this.state.deletedPhotos.map(photo => photo.key)
+            superagent
+            .post(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/api/photos/delete/' + this.state.editingId)
+            .set({'Authorization': localStorage.jwtToken})
+            .send({ keys: keys })
+            .then(res => {
+                this.setState({
+                    deletedPhotos:[]
+                })
+            })
+        }
+    }
+
+    deleteProject(e){
+        this.setState({loading: true}, () => {
+            superagent
+            .post(process.env.REACT_APP_SUBMIT_PROJECT_URL + '/api/delete/' + this.state.editingId)
+            .set({'Authorization': localStorage.jwtToken})
+            .then(setTimeout(() => {
+                this.fetchProjects()
+            }, 1500))
+        })
+    }
+
+    _onFocus = (e) => {
+        e.currentTarget.type = "date";
+    }
+
+    _onBlur = (e) => {
+        e.currentTarget.type = "text";
+        e.currentTarget.placeholder = this.state.isNewProject ? 'Enter a date' : formatDateProper(this.state.project.createDate)
+    }
+
     renderProjectEditor(){
         return(
             <div>
@@ -161,13 +212,25 @@ class ManageProjects extends React.PureComponent{
                             <div className="form-group">
                             <label for="projectName">Project Create Date:</label>
                             <input 
-                            id="createDate"
-                            type="date" 
-                            value={this.state.project.createDate}
-                            onChange={this.modifyProjectState} 
-                            className="form-control" 
-                            required
-                            />
+                            type="text" 
+                            id="createDate" 
+                            onChange={this.modifyProjectState}  
+                            onFocus = {this._onFocus} 
+                            onBlur={this._onBlur} 
+                            className="form-control"
+                            required/>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div class="form-group">
+                                <label for="projectLocation">Project City Location:</label>
+                                <input type="text" 
+                                id="projectLocation"
+                                className="form-control"
+                                onChange={this.modifyProjectState} 
+                                placeholder={this.state.project.projectLocation}
+                                required
+                                />
                             </div>
                         </Col>
                         <Col>
@@ -208,20 +271,21 @@ class ManageProjects extends React.PureComponent{
                     title="YouTube Links" 
                     smallText={<small>Add links to each video and hit the green button.</small>}
                     placeholder="https://www.youtube.com/example-video/1234"
-                    items={["1", "abc", "hello"]}
-                    manageItems={items => this.manageVideoLinks(items)}
+                    items={this.state.project.youtubeLinks || []}
+                    manageItems={item => this.manageVideoLinks(item)}
                     />
                     <div id="fileUploader">
+                    <h6>Photo Upload</h6>
                         <small>
-                            Upload photos only! Video uploads beyond 1-2 minutes will be extremely slow. 
+                            Upload photos only! Video uploads will not work here! 
                             <br/>
-                            If you have large videos, please upload them to YouTube and use the above tool.
+                            If you have videos to include, please upload them to YouTube and use the above tool.
                         </small>
                         <Dropzone
                             getUploadParams={this.getUploadParams}
                             onChangeStatus={this.handleChangeStatus}
                             onSubmit={this.handleSubmit}
-                            accept="image/*,audio/*,video/*"
+                            accept="image/*"
                             ref={this.setChildRef}
                         />
                     </div>
@@ -240,6 +304,7 @@ class ManageProjects extends React.PureComponent{
                     <Row>
                         <Col xs={12} id="submitRow">
                             <button type="submit" id="submitProject" form="editProjectForm" onClick={this.submitProject}>Submit Changes</button>
+                            {!this.state.isNewProject ? <button className='btn btn-danger' id="deleteProject" onClick={this.deleteProject}>Delete Project</button> : null}
                         </Col>
                     </Row>
                 </div>
@@ -249,6 +314,15 @@ class ManageProjects extends React.PureComponent{
     renderFileProgressBar(){
         return(
             <FileProgressBar percent={(this.state.fileUpload.numberComplete / this.state.fileUpload.totalFiles) * 100}/>
+        )
+    }
+
+    renderSkylightTitle(){
+        return(
+            <div id="skylightTitle">
+                <input id="projectName" onChange={this.modifyProjectState} type="text" placeholder={this.state.project.projectName}/>
+                {!this.state.fileUpload.uploading ? <Toggle title="Featured on Home Page" toggleEffect={b => this.featureProject(b)} value={this.state.project.featured}/> : null}
+            </div>
         )
     }
 
@@ -265,7 +339,6 @@ class ManageProjects extends React.PureComponent{
     // receives array of files that are done uploading when submit button is clicked
 
     handleSubmit = (files, allFiles) => {
-        console.log("Handling Submit")
         if(allFiles.length !== 0){
             let upload = this.state.fileUpload
             upload.uploading = true
@@ -301,10 +374,12 @@ class ManageProjects extends React.PureComponent{
 
     deletePhoto(id){
         let photo = this.state.photos.find(p => p.key === id)
+        let project = this.state.project
         let deleted = this.state.deletedPhotos
         deleted.push(photo)
+        project.mediaCount -= 1
         let newPhotos = this.state.photos.filter(p => p.key !== id)
-        this.setState({photos: newPhotos})
+        this.setState({photos: newPhotos, deletedPhotos:deleted, project:project})
     }
 
     makeCover(id){
@@ -339,8 +414,8 @@ class ManageProjects extends React.PureComponent{
                 </Row>
                 <SkyLight 
                 dialogStyles={projectInterfaceStyles} 
-                hideOnOverlayClicked ref={ref => this.customDialog = ref} 
-                title={<div><small>{this.state.project.projectId}</small><input id="projectName" onChange={this.modifyProjectState} type="text" placeholder={this.state.project.projectName}/></div>}
+                ref={ref => this.customDialog = ref} 
+                title={this.renderSkylightTitle()}
                 >
                 {
                 this.state.fileUpload.uploading

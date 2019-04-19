@@ -16,15 +16,13 @@ const PhotoPreviewContainer = (props) => {
     const getPhotos = () => {
         return props.photos.map(photo => 
             {
-                console.log(props.project.coverImage)
-                console.log(photo.url)
                 return(
                     <Col xs={12} lg={3} id="imageWrapper">
                         <img id={photo.key} className={`${photo.url === props.project.coverImage ? 'coverImage' : null}`} src={photo.url}/>   
                         <div id="dropdownWrapper">
                             <DropdownButton 
                             id="dropdown-basic-button" 
-                            title="Dropdown button"
+                            title="Photo Actions"
                             drop="down"
                             size="sm"
                             variant="warning"
@@ -46,7 +44,7 @@ const PhotoPreviewContainer = (props) => {
         <div>
             <Row id="controlWrapper">
                 <Col xs={12}>
-                    <div id="photoTrigger" onClick={() => openPhotos(!open)}>
+                    <div id="photoTrigger" className={props.photos.length >= 1 ? null : 'disabled'} onClick={() => openPhotos(!open)}>
                     {open ? 'Hide' : 'Show'} Uploaded Photos
                     <FontAwesomeIcon icon={open ? faChevronCircleUp : faChevronCircleDown}/>
                     </div>

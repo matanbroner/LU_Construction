@@ -6,7 +6,7 @@ const FileProgressBar = (props) => {
     return (
         <div id="progressBarWrapper">
             <ProgressBar animated now={props.percent}/>
-            <h6>File Upload Complete: {props.percent}%</h6>
+            <h6>File Upload Complete: {Math.round(props.percent)}%</h6>
         </div>
     )
 }

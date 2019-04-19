@@ -36,34 +36,6 @@ const upload = multer({
 }).array('upload', 50);
 
 
-// // CREATE A PROJECT
-// api.post('/create/:id', (req, res, next) => {
-//     console.log(api.stack)
-//     authenticate(req, res , (r) => { 
-//         if (!r) 
-//         res.status(404).json({badAuth: 'Invalid or no authorization was provided, action denied.'})
-//     })
-//     var projectInfo = req.body.projectInfo
-//     upload(req, res, err => {
-//         if (err) {
-//         console.log(err);
-//         return res.status(404).json({ errors: err });
-//         }
-//     });
-//     var newProject = new Project({
-//         projectId: projectInfo.id,
-//         projectName: projectInfo.projectName,
-//         createDate: projectInfo.date,
-//         bucketId: projectInfo.id,
-//         mediaCount: projectInfo.mediaCount,
-//         coverImage: projectInfo.coverPhotoUrl,
-//         youtubeLinks: projectInfo.youtubeLinks ? [].concat(projectInfo.youtubeLinks) : [],
-//         priceMin: projectInfo.priceMin ? projectInfo.priceMin : 0,
-//         priceMax: projectInfo.priceMax ? projectInfo.priceMax : 0
-//     })
-//     newProject.save(function(err){if (err) console.log(err)})
-//     return res.status(200)
-// });
 
 // GET DATABASE OBJECT FOR A PROJECT
 api.get('/:id', (req, res, next) => {
@@ -87,13 +59,15 @@ api.post('/modify/:id', (req, res, next) => {
                     var newProject = new Project({
                         projectId: projectInfo.projectId,
                         projectName: projectInfo.projectName,
+                        projectLocation: projectInfo.projectLocation,
                         createDate: projectInfo.createDate,
                         bucketId: projectInfo.projectId,
                         mediaCount: projectInfo.mediaCount,
                         coverImage: projectInfo.coverPhotoUrl,
                         youtubeLinks: projectInfo.youtubeLinks ? [].concat(projectInfo.youtubeLinks) : [],
                         priceMin: projectInfo.priceMin ? projectInfo.priceMin : 0,
-                        priceMax: projectInfo.priceMax ? projectInfo.priceMax : 0
+                        priceMax: projectInfo.priceMax ? projectInfo.priceMax : 0,
+                        featured: projectInfo.featured
                     })
                     newProject.save(function(err){
                         if (err) {
@@ -154,12 +128,11 @@ api.post('/photos/delete/:id', (req, res, next) => {
     authenticate(req, res , (r) => { 
         if (!r) 
         res.status(404).json({badAuth: 'Invalid or no authorization was provided, action denied.'})
-        else res.status(200).json({successAuth: 'You are authorized.'})
     })
 
     let keys = req.body.keys
     let Delete = {
-        Objects: keys.map(key => {Key: key})
+        Objects: keys.map(key => {return {Key: key}})
     }
     let deleteParams = {
         Bucket: process.env.DO_SPACE_NAME,
@@ -167,7 +140,7 @@ api.post('/photos/delete/:id', (req, res, next) => {
     }
     s3.deleteObjects(deleteParams, function (err, data) {
         if (!err) {
-            res.status(200); // sucessfull response
+            res.status(200).json(data); // sucessfull response
         } else {
             res.status(404); // an error ocurred
         }
@@ -180,8 +153,7 @@ api.post('/delete/:id', (req, res, next) => {
 
     authenticate(req, res , (r) => { 
         if (!r) 
-        res.status(404).json({badAuth: 'Invalid or no authorization was provided, action denied.'})
-        else res.status(200).json({successAuth: 'You are authorized.'})
+         res.status(404).json({badAuth: 'Invalid or no authorization was provided, action denied.'})
     })
 
     let keys = []
@@ -191,7 +163,7 @@ api.post('/delete/:id', (req, res, next) => {
     }
     s3.listObjectsV2(params, function(err, data){
         if(err)
-            console.log(err)
+            return res.status(404) 
         data.Contents.forEach(obj => {
             keys.push({
                 Key: obj.Key
@@ -210,15 +182,17 @@ api.post('/delete/:id', (req, res, next) => {
                 if (!err) {
                     Project.findOneAndDelete({projectId: req.params.id}, err => {
                         if (err)
-                            res.status(404) 
+                             return res.status(404) 
+                        else return res.status(200); // sucessfull response
                     })
-                    res.status(200); // sucessfull response
+                    return res.status(200)
                 } else {
-                    res.status(404); // an error ocurred
+                     return res.status(404); // an error ocurred
                 }
             });
 
         })
+        res.status(200).json({deleted: "Project and all photos were deleted."})
     })
 
 module.exports = api;
