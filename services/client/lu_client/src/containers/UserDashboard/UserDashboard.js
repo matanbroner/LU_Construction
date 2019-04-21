@@ -3,13 +3,14 @@ import React from 'react'
 import styles from './UserDashboard.css'
 import { Route, Link } from "react-router-dom";
 import ManageProjects from '../ManageProjects/ManageProjects'
+import ManageTestimonials from '../ManageTestimonials/ManageTestimonials'
 import Spinner from '../../components/Spinner/Spinner'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import UserDashAction from '../../components/UserDashAction/UserDashAction'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
-import { faHardHat, faStar, faHome, faUser, faChartLine } from '@fortawesome/free-solid-svg-icons'
+import { faHardHat, faStar, faHome, faUser, faChartLine, faTh } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { authenticate } from '../../assets/utils/authenticate'
 import { logout } from '../../assets/utils/logout'
@@ -55,13 +56,16 @@ class UserDashboard extends React.PureComponent{
                 <Row>
                     <Col className="d-none d-lg-block" lg={2} id="userDashSidebar">
                         <div id="userProfile">
-                            <FontAwesomeIcon id="userDashIcon" icon={faUserCircle}/>
+                            <Link to='/user_dash'>
+                                <FontAwesomeIcon id="userDashIcon" icon={faUserCircle}/>
+                            </Link>
                             <p id="userDashName">{this.state.name}</p>
                             <p id="userDashRole">{this.state.role}</p>
                             <button id="logoutButton" onClick={() => this.logoutAnRedirect()}>Log Out</button>
                         </div>
                     </Col>
                     <Route path={`${this.props.match.path}/manage_projects`} component={ManageProjects}/>
+                    <Route path={`${this.props.match.path}/manage_testimonials`} component={ManageTestimonials}/>
                     <Route
                     exact
                     path={this.props.match.path}
@@ -77,6 +81,7 @@ class UserDashboard extends React.PureComponent{
                                 icon={faStar} 
                                 background="#f7d600" 
                                 action="Manage Testimonials"
+                                redirect={`${this.props.match.path}/manage_testimonials`}
                                 />
                                 <UserDashAction 
                                 icon={faHardHat} 

@@ -9,7 +9,6 @@ import ProjectsPage from './containers/ProjectsPage/ProjectsPage'
 import UserDashboard from './containers/UserDashboard/UserDashboard'
 import ContactPage from './containers/ContactPage/ContactPage'
 import PageNotFound from './components/PageNotFound/PageNotFound'
-
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import BottomBar from './components/BottomBar/BottomBar'
 import * as serviceWorker from './serviceWorker';

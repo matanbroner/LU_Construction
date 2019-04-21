@@ -40,12 +40,11 @@ const BottomBar = () => {
                         </span>
                     </button>
                 </form>
-            </div>
-            <div id="socialTags">
                 <FontAwesomeIcon icon={faFacebook}/>
                 <FontAwesomeIcon icon={faYelp}/>
                 <FontAwesomeIcon icon={faHouzz}/>
-            </div>  
+            </div>
+
     </Navbar>
       
       );

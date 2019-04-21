@@ -62,6 +62,19 @@ services:
     depends_on:
       - mongo
 
+  testimonials:
+    build:
+      context: ./services/testimonials
+      dockerfile: Dockerfile.testimonials
+    volumes:
+      - './services/testimonials:/usr/src/app'
+    ports:
+      - 5200:5200
+    depends_on:
+      - mongo
+    
+    
+
 volumes:
   lu_volume:
 

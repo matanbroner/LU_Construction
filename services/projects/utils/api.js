@@ -60,6 +60,7 @@ api.post('/modify/:id', (req, res, next) => {
                         projectId: projectInfo.projectId,
                         projectName: projectInfo.projectName,
                         projectLocation: projectInfo.projectLocation,
+                        projectDescription: projectInfo.projectDescription,
                         createDate: projectInfo.createDate,
                         bucketId: projectInfo.projectId,
                         mediaCount: projectInfo.mediaCount,

@@ -5,7 +5,8 @@
     border-radius: 10px;
     background: white;
     padding: 2%;
-    margin: 1.2% auto;
+    margin: 1.5% auto;
+    height: fit-content;
 }
 
 #userIcon{
@@ -24,11 +25,21 @@
     margin-right: 10%;
 }
 
+#testimonialBody{
+    white-space: pre-wrap;
+}
+
 #testimonialProject{
     font-size: 0.9em;
     margin-left: 5%;
     font-style: italic;
     color: #767c82;
+}
+
+#readMoreButton{
+    cursor: pointer;
+    color: #176aab;
+    text-decoration: underline;
 }
 
 @media(max-height: 400px){

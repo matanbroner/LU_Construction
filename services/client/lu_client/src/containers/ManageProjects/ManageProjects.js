@@ -251,7 +251,7 @@ class ManageProjects extends React.PureComponent{
                         </Col>
                         <Col>
                             <div class="form-group">
-                                <label for="priceMax">Project Price Maximum:</label>
+                                <label for="priceMax">Project Price Minimum:</label>
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">$</div>
                                 <input type="number" 
@@ -266,11 +266,26 @@ class ManageProjects extends React.PureComponent{
                             </div>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col>
+                            <div class="form-group">
+                                <label for="projectDescription">Project Description:</label>
+                                <textarea 
+                                className="form-control" 
+                                id="projectDescription" 
+                                rows="5"
+                                onChange={this.modifyProjectState} 
+                                placeholder={this.state.project.projectDescription}
+                                >
+                                </textarea>
+                            </div>
+                        </Col>
+                    </Row>
                 </form>
                 <ListModule 
                     title="YouTube Links" 
                     smallText={<small>Add links to each video and hit the green button.</small>}
-                    placeholder="https://www.youtube.com/example-video/1234"
+                    placeholder="Enter a youtube link here"
                     items={this.state.project.youtubeLinks || []}
                     manageItems={item => this.manageVideoLinks(item)}
                     />

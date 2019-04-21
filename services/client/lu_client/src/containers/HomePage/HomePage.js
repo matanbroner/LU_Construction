@@ -35,9 +35,15 @@ class HomePage extends React.PureComponent{
                 if (res){
                     this.setState({
                         projects: res.body
-                    }, this.setState({loading: false}))
+                    }, this.fetchTestimonials())
                 }
             })
+    }
+
+    fetchTestimonials(){
+        superagent
+        .get('/service/testimonials/all')
+        .then(res => this.setState({testimonials: res.body}, this.setState({loading: false})))
     }
 
     renderFeaturedProjects(){
@@ -47,6 +53,13 @@ class HomePage extends React.PureComponent{
                         location="San Jose" 
                         project={project}
                         colSize={6}/>
+            })
+    }
+
+    renderTestimonials(){
+        if(this.state.testimonials)
+            return this.state.testimonials.map(testimonial => {
+                return <TestimonialPreview item={testimonial}/>
             })
     }
 
@@ -85,9 +98,7 @@ class HomePage extends React.PureComponent{
                 <Col className="testimonialsPreview" lg={4} md={4}>
                     <Container id="testimonialsPreviewContent">
                         <h3 id="testimonialsPreviewHeader">What people are saying</h3>
-                        <TestimonialPreview rating={4} name="Matan Broner" review={review}/>
-                        <TestimonialPreview rating={4} name="Matan Broner" review={review}/>
-                        <TestimonialPreview rating={4} name="Matan Broner" review={review}/>
+                        {this.renderTestimonials()}
                     </Container>
                 </Col>
                 </Row>

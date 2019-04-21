@@ -1,5 +1,19 @@
 
+#allContactPageContent{
+    min-height: 100vh;
+    align-content: center;
+    padding-top: 4vh;
+    padding-left: 60px;
+}
 
+#contactPageTitle{
+    margin-bottom: 20vh;
+    font-size: 2rem;
+    -webkit-text-size-adjust: 100%;
+    font-weight: 300;
+    color: #757c83;
+    font-style: italic;
+}
 
 
 

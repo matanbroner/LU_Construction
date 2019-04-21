@@ -94,7 +94,7 @@ class Project extends React.PureComponent{
                     <Col md={9} id="galleryAndHeader">
                         <div id="projectDetailsWrapper">
                             <span id="projectTitle">{this.state.project.projectName}</span>
-                            <p id="projectDescription">{lorem1}</p>
+                            <p id="projectDescription">{this.state.project.projectDescription}</p>
                         </div>
                         <div id="gallery"><ImageGallery items={this.getPhotoUrls()} thumbnailPosition="right"/></div>
                     </Col>

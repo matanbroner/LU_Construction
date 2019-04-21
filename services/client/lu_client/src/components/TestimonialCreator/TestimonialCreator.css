@@ -57,6 +57,14 @@
     color: #757c83;
 }
 
+#relationship{
+    width: 80%;
+    margin: auto;
+    height: 40px;
+    background-color: white;
+    color: #757c83;
+}
+
 #description{
     width: 80%;
     margin: auto;
