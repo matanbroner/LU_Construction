@@ -9,6 +9,7 @@ services:
       dockerfile: Dockerfile.users
     volumes:
       - './services/users:/usr/src/app'
+      - '/usr/src/app/node_modules'
     ports: 
       - 5000:5000
     depends_on:
@@ -55,6 +56,7 @@ services:
       dockerfile: Dockerfile.projects
     volumes:
       - './services/projects:/usr/src/app'
+      - '/usr/src/app/node_modules'
     ports: 
       - 5100:5100
     links:
@@ -68,6 +70,7 @@ services:
       dockerfile: Dockerfile.testimonials
     volumes:
       - './services/testimonials:/usr/src/app'
+      - '/usr/src/app/node_modules'
     ports:
       - 5200:5200
     depends_on:
