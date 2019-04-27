@@ -1,0 +1,120 @@
+
+#userDashWrapper{
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    margin-bottom: -10vh;
+    margin-top: -1vh;
+}
+
+#userDashSidebar{
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.3);
+    padding-top: 5vh;
+    min-height: 100vh;
+}
+
+#userProfile{
+    padding-top: 20px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background: white;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+#logoutButton{
+    margin-top: 3vh;
+    background-color: rgb(188, 53, 57);
+    border-radius   : 9px;
+    width: 50%;
+    height: 40px;
+    font-weight: bold;
+    color: white;
+    border: #465935;
+}
+
+#dashboardButton{
+    padding-top: 7px;
+    margin-top: 3vh;
+    background-color: #179bd3;
+    border-radius   : 9px;
+    width: fit-content;
+    height: 40px;
+    font-weight: bold;
+    color: white;
+    border: #465935;
+}
+
+#userDashIcon{
+    font-size: 5rem;
+    color: #83ab4a;
+    padding-left: auto;
+}
+
+#userDashName{
+    padding-top: 3vh;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+#userDashRole{
+    padding-top: 3vh;
+    font-size: 1.2rem;
+    font-weight: 200;
+    font-style: italic;
+}
+
+#dashboardContentWrapper{
+    
+}
+
+#greetingRow{
+    margin: 5vh auto;
+    width: 90%;
+    color: #767c82;
+}
+
+#actionsRow{
+    margin: 5vh auto;
+    width: 90%;
+}
+
+#tasksAndTrackingRow{
+    margin: 10vh auto;
+    width: 90%;
+}
+
+#todoList{
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background: white;
+    height: 40vh;
+    border-radius: 10px;
+    padding-top: 3vh;
+}
+
+#todoListHeader{
+    font-weight: 500;
+    color: #767c82;
+    font-size: 1.5rem;
+    overflow: auto;
+}
+
+#assignTodo{
+    margin-top: 3vh;
+    background-color: #009bee;
+    border-radius   : 9px;
+    width: 50%;
+    height: 50px;
+    font-weight: bold;
+    color: white;
+    border: #465935;
+    margin-left: 25%;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}

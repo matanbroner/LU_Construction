@@ -1,0 +1,84 @@
+
+  @media(max-width: '600px'){
+    
+    
+  }
+
+  .bannerimage {
+
+    background-repeat: no-repeat;
+    background-image: url('../../assets/photos/homePageBanner.png');
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 20em;
+    opacity: 1;
+    visibility: inherit;
+   
+  }
+  .jumbotron{
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    background-color: transparent;
+    padding: 10% auto;
+  }
+
+
+  #jumbotronTitle{
+      font-size: 50px;
+      padding-bottom: 2%;
+      font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue";
+  }
+
+  #jumbotronText{
+      width: 60%;
+      margin: auto;
+      font-size: 18px;
+      font-family: "Helvetica Neue";
+      font-style: italic;
+  }
+
+  @media(max-width: 700px){
+      #jumbotronText{
+        font-size: 12px;
+      }
+
+      #projectsPreviewHeader{
+        font-size: 6vw;
+      }
+  }
+
+  .projectsPreview{
+      margin-top: 2%;
+  }
+  
+  #projectsPreviewHeader{
+      text-align: center;
+      color: #b0b0b0;
+      margin-bottom: 5%;
+  }
+
+  .testimonialsPreview{
+    margin-bottom: -10vh;
+    padding-bottom: 10vh;
+    padding-top: 2%;
+    border-radius: 1px;
+    border: 1px solid #e2e1e4;
+    
+    
+}
+
+#testimonialsPreview{
+  padding-right: 0;
+}
+  
+  #testimonialsPreviewHeader{
+    text-align: center;
+    color: #b0b0b0;
+}
+
+#contentRow{
+  width: 100%;
+  margin-left: 0
+}

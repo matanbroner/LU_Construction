@@ -1,0 +1,14 @@
+
+#userTableWrapper{
+    width: 90%;
+    height: 100%;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    background: white;
+    margin-left: 40px;
+    padding: 30px;
+}
+
+#userTableWrapper > .table{
+    border-radius: 10px;
+}

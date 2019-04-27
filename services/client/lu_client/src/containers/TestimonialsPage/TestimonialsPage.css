@@ -1,0 +1,30 @@
+
+#testimonialPageWrapper{
+    
+}
+
+#testimonialsHeader{
+    margin-bottom: 8%;
+    font-weight: 300;
+    text-align: center;
+    color: #757c83;
+}
+
+#testimonialCollection{
+    margin-top:5.5%;
+    margin-left: 5%;
+    height: 90%;
+}
+
+#testimonialColumn{
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 5%;
+    background: #ccd3e1;
+    border-radius: 10px;
+}
+
+#createPanel{
+    min-height: 100%;
+    margin-top:5%;
+}

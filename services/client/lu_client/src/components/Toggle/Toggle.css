@@ -1,0 +1,35 @@
+.wrapper {
+    padding: 50px;
+  }
+  
+  .toggle-component {
+    font-size: 2rem;
+    color: #171717;
+    width: 50px;
+    height: 20px;
+    background: #ffffff;
+    border: 1px solid #d3d5d6;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color background-color 0.3s;
+    margin: 10px;
+  }
+  .toggle-component.active {
+    background: #66CC99;
+    border-color: #dfdfdf;
+  }
+  .toggle-component.active .toggle-button {
+    right: -2px;
+  }
+  .toggle-component .toggle-button {
+    position: absolute;
+    top: -3px;
+    right: 50%;
+    height: 26px;
+    width: 26px;
+    background: #dfdfdf;
+    box-shadow: 0 0 5px #555;
+    border-radius: 50%;
+    transition: right 0.3s;
+  }

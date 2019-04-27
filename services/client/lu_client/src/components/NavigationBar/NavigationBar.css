@@ -1,0 +1,55 @@
+
+.navbar{
+    background-color: #6b954f;
+    margin-bottom: 5px;
+}
+
+.mainLogo{
+    max-width:60%;
+    height:auto;
+}
+
+@media (min-width: 1100px)
+{
+    .navbar{
+        height: 150px;
+    }
+    .navbar-nav
+    {
+        margin-top: 90px;
+        vertical-align: bottom;
+    }
+    .navbar-nav > a {
+        margin-left:6px;
+        margin-right:6px;
+        color: white;
+    }
+
+    .mainLogo{
+        margin-left: 30px;
+        max-width:90%;
+        height:auto;
+    }
+}
+
+
+.navbar-light .navbar-nav .nav-link{
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+}
+
+.navbar-nav > .socialMediaTag{
+    margin: 0;
+}
+
+svg:not(:root).svg-inline--fa{
+    font-size: 24px;
+    color: white;
+    margin-left:6px;
+    margin-right:6px;
+    cursor: pointer;
+}
+svg:not(:root).svg-inline--fa:hover{
+    color: rgba(0,0,0,.5);
+}

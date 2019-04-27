@@ -1,0 +1,154 @@
+body{
+    background-color: #f0f3f4;
+}
+
+label{
+    width: 100%;
+}
+
+.mainContent{
+    margin-top: 6%;
+    text-align: center;
+    height: 100%;
+    min-height: 300px;
+    max-width: 90%;
+
+    border-radius: 20px;
+    background-color: #a0ce7d;
+    opacity: 0.8;
+
+    /* -webkit-box-shadow: -1px 1px 5px 9px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 1px 5px 9px rgba(0,0,0,0.75); */
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    color: #454648;
+    overflow-y: show;
+    margin-bottom: 20vh;
+
+}
+
+
+#homeButton {
+	background-color: #749357;
+    border-radius   : 9px;
+    min-width: 40%;
+    min-height: 40px;
+
+    margin-top: 20px;
+    font-weight: bold;
+    color: white;
+
+}
+#homeButton:hover {
+	opacity: 0.7;
+}
+
+
+.loginExplained{
+    background-color: #f6f0e8;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+#loginExplainedTitle{
+    margin-top: 20px;
+}
+
+#loginExplainedPrompt{
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.loginMain{
+    z-index: 2;
+}
+
+.cred{
+    border-radius: 25px;
+
+    text-align: center;
+    margin-bottom: 30px;
+}
+.cred::placeholder{
+    color: #749357;
+}
+
+#submitcreds{
+    margin-bottom: 2vh;
+    margin-top: 3vh;
+    background-color: #749357;
+    border-radius   : 9px;
+    width: 40%;
+    height: 40px;
+    font-weight: bold;
+    color: white;
+    border: #465935;
+}
+
+#loginTitle{
+    margin-top: 20px;
+}
+
+#loginCreds{
+    margin-top: 20px;
+}
+
+
+#titleIcon{
+    color: rgba(0,0,0,.5);
+    font-size: 30px;
+}
+
+@media(min-width: 750px){
+
+    .mainContent{
+        
+    }
+
+    #signInPageWrapper > .row{
+        height: 100%;
+    }
+
+    #homeButton{
+        margin-top: 20%;
+        width: 50%;
+        min-height: 2%;
+        
+    }
+
+    .loginExplained{
+        background-color: #f6f0e8;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 0px;
+    }
+    
+}
+
+#errorLogin{
+    color: #d70000;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+@media(orientation: landscape) and (max-height: 500px){
+    #signInPageWrapper{
+        height: 100vh;
+    }
+
+    .mainContent{
+        min-height: 40vh;
+        overflow: scroll;
+    }
+
+    .loginExplained{
+    }
+}
+
+@media(orientation: portrait) and (max-width: 400px){
+    #signInPageWrapper{
+        max-height: 100vh;
+    }
+
+    .mainContent{
+        min-height: 40vh;
+    }
+}

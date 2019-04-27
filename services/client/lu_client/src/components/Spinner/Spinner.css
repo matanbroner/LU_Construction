@@ -1,0 +1,23 @@
+
+
+.spinner {
+    height: 80px;
+    width: 80px;
+    animation: rotation .5s infinite linear;
+    border-left: 5px solid #556d41;
+    border-right: 5px solid #556d41;
+    border-bottom: 5px solid #556d41;
+    border-top: 5px solid #2f3c24;
+    border-radius: 100%;
+    margin: 20% 50%;
+  }
+
+  #spinnerWrapper{
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+  
+  @keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
+  }

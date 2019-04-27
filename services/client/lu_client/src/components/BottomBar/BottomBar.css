@@ -1,0 +1,59 @@
+
+#bottomBar{
+    background-color: #6b954f;
+    margin-top: 10vh;
+    margin-bottom: 0 !important;
+    z-index: -1;
+    position: absolute;
+    left:0;
+    right: 0;
+    display: flex;
+}
+
+#bottomLogo{
+    max-width:40%;
+    height:auto;
+}
+
+#infoTag{
+    margin: auto 4vw;
+    color: white;
+}
+
+#createContactAction{
+    max-width: 40vw;;
+}
+
+#submitContactAction{
+    background: #6b954f;
+    border: 0;
+}
+
+@media (min-width: 1100px)
+{
+    #bottomBar{
+        height: 80px;
+    }
+}
+
+
+#socialTags{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.navbar-nav > .socialMediaTag{
+    margin: 0;
+}
+
+svg:not(:root).svg-inline--fa{
+    font-size: 24px;
+    color: white;
+    margin-left:6px;
+    margin-right:6px;
+    cursor: pointer;
+}
+svg:not(:root).svg-inline--fa:hover{
+    color: rgba(0,0,0,.5);
+}

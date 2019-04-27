@@ -1,0 +1,50 @@
+
+
+#testimonialItemWrapper{
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    background: white;
+    padding: 2%;
+    margin: 1.5% auto;
+    height: fit-content;
+}
+
+#userIcon{
+    color: #749357;
+    font-size: 4vw;
+}
+
+#testimonialStars{
+    display: flex;
+    padding-right: 3%;
+    justify-content: flex-end;
+}
+
+#testimonialName{
+    font-weight: 550;
+    margin-right: 10%;
+}
+
+#testimonialBody{
+    white-space: pre-wrap;
+}
+
+#testimonialProject{
+    font-size: 0.9em;
+    margin-left: 5%;
+    font-style: italic;
+    color: #767c82;
+}
+
+#readMoreButton{
+    cursor: pointer;
+    color: #176aab;
+    text-decoration: underline;
+}
+
+@media(max-height: 400px){
+    #testimonialItemWrapper{
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        margin: 1.2%;
+    }
+}

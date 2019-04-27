@@ -1,0 +1,60 @@
+
+#titleListModule{
+    font-weight: bold;
+}
+
+.listModuleItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    border-radius: 10px;
+    margin-top: 1vh;
+    margin-bottom: 0.25vh;
+    padding-left: 15px;
+    height: 28px;
+}
+
+.listModuleItem:first-child{
+    border-radius: 10px;
+}
+
+.listModuleItem:last-child{
+    border-radius: 10px;
+    margin-bottom: 1vh;
+}
+
+.removeItemButton {
+    border: 0;
+    padding: 0;
+    height: 90%;
+    margin-right: 5px;
+    padding-top: 2px;
+    margin-top: 1px;
+}
+
+.removeItemButton > svg:not(:root).svg-inline--fa{
+    font-size: 20px;
+    color: #ae3f3e;
+}
+
+#addButton > svg:not(:root).svg-inline--fa{
+    font-size: 30px;
+    color: #44922a;
+}
+
+#inputAndSubmit > #addButton{
+    border-radius: 50%;
+    margin-left: 1%;
+    border: 0
+}
+
+#inputAndSubmit > input{
+    border-radius: 10px;
+    height: 28px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+
+}
+
+#inputAndSubmit{
+    display: flex;
+}
