@@ -4,6 +4,7 @@ import styles from './UserDashboard.css'
 import { Route, Link } from "react-router-dom";
 import ManageProjects from '../ManageProjects/ManageProjects'
 import ManageTestimonials from '../ManageTestimonials/ManageTestimonials'
+import ManageUsers from '../ManangeUsers/ManageUsers'
 import Spinner from '../../components/Spinner/Spinner'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -66,6 +67,7 @@ class UserDashboard extends React.PureComponent{
                     </Col>
                     <Route path={`${this.props.match.path}/manage_projects`} component={ManageProjects}/>
                     <Route path={`${this.props.match.path}/manage_testimonials`} component={ManageTestimonials}/>
+                    <Route path={`${this.props.match.path}/manage_users`} component={ManageUsers}/>
                     <Route
                     exact
                     path={this.props.match.path}
@@ -94,15 +96,13 @@ class UserDashboard extends React.PureComponent{
                             <Row id="tasksAndTrackingRow">
                                 <UserDashAction icon={faChartLine} background="#a156f0" action="Site Analytics"/>
                                 {this.state.role === 'Administrator' 
-                                    ? <UserDashAction icon={faUser} background="#009bee" action="Manage Users"/>
+                                    ? <UserDashAction 
+                                        icon={faUser} 
+                                        background="#009bee" 
+                                        redirect={`${this.props.match.path}/manage_users`}
+                                        action="Manage Users"/>
                                     : <Col className="d-none d-lg-block" lg={4}/>
                                 }
-                                <Col xs={12} lg={4}>
-                                    <div id="todoList">
-                                        <span id="todoListHeader">Your To-Do's</span>
-                                    </div>
-                                    <button id="assignTodo">Create a To-Do</button>
-                                </Col>
                             </Row>
                         </Col>
                     }

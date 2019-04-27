@@ -48,19 +48,12 @@ class TestimonialsPage extends React.PureComponent{
             : <div>
                 <Row id="testimonialPageWrapper">
                     <Col id="testimonialCollection">
-                    <h3 id="testimonialsHeader">Our customers love us!</h3>
-                        <MediaQuery query="(min-width: 900px)">
+                    <h2 id="testimonialsHeader">Our customers love us!</h2>
                             <Row id="testimonialColumn">
                     
                                 {this.renderTestimonials()}
                             
-                            </Row>
-                        </MediaQuery>
-                        <MediaQuery query="(max-width: 901px)">
-                            <ScrollableSection orient='x'>
-                                {this.renderTestimonials()}
-                            </ScrollableSection>
-                        </MediaQuery>
+                            </Row>                 
                     </Col>
                     <Col md={5} id="createPanel">
                         <TestimonialCreator/>

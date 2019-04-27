@@ -62,7 +62,7 @@ class ProjectsPage extends React.PureComponent{
                 <Col className="d-none d-lg-block" id="projectsListPanel" lg={2}>
                     <Link to="/projects" id="projectsPageLink">
                         <span id="projectListPanelTitle">
-                            Projects
+                            All Projects
                         </span>
                     </Link>
                     <div id="projectsListItems">{this.getSidebarProjectList()}</div>

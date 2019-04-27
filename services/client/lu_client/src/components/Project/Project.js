@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row'
 import SkyLight from 'react-skylight';
 import MediaQuery from 'react-responsive'
 import Spinner from '../Spinner/Spinner';
+import {Link} from 'react-router-dom'
 import {formatDate} from '../../assets/utils/stringFormat'
 const superagent = require('superagent');
 
@@ -119,7 +120,10 @@ class Project extends React.PureComponent{
                     <p><h6>Project Location:</h6>San Jose, CA</p>
                     <div id="getAnEstimatePrompt">
                         <p>Like this project? Tell us what your dream house looks like!</p>
-                        <button>Get an estimate!</button>
+                       
+                            <button onClick={() => this.props.history.add('/contact')}>
+                                Get an estimate!
+                            </button>
                     </div>
                 </SkyLight>
                 </MediaQuery>

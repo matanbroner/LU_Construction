@@ -23,7 +23,6 @@
 #testimonialCreateTitle{
     margin: 8.5% auto;
     color: #757c83;
-    font-size: 2vw;
     font-weight: 300;
 
 }
@@ -81,3 +80,11 @@
     border: #465935;
 }
 
+#submittedPanelWrapper{
+    font-size: 40px;
+    padding-top: 80px;
+}
+
+#submittedPanelWrapper > p > svg:not(:root).svg-inline--fa{
+    color: black;
+}

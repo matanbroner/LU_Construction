@@ -26,13 +26,13 @@ class EstimateCreator extends React.Component{
         return(
             <div id="estimateCreatorWrapper">
                 <h3>Want an Estimate?</h3>
-                <form>
+                <form id="estimateForm">
                     <Row>
                         <Col>
                             <Row>
                             <Col>
                                 <div class="form-group">
-                                    <label for="name">Your name:</label>
+                                    <label for="name" id="estimateFormLabel">Your name:</label>
                                     <input type="text" 
                                     className="form-control" id="name"
                                     placeholder="Enter your name" 
@@ -44,7 +44,7 @@ class EstimateCreator extends React.Component{
                         <Row>
                             <Col>
                                 <div class="form-group">
-                                    <label for="email">Your email:</label>
+                                    <label for="email" id="estimateFormLabel">Your email:</label>
                                     <input type="email" 
                                     className="form-control" id="email" 
                                     placeholder="Enter your email" 
@@ -56,7 +56,7 @@ class EstimateCreator extends React.Component{
                         <Row>
                             <Col>
                                 <div className="form-group">
-                                    <label id="reviewlabel" for="projectType">Project type:</label>
+                                    <label  for="projectType" id="estimateFormLabel">Project type:</label>
                                         <select id="projectType" onChange={this.updateState}>
                                             <option selected value="New Construction">New Construction</option>
                                             <option value="Bathroom Remodel">Bathroom Remodel</option>
@@ -69,7 +69,7 @@ class EstimateCreator extends React.Component{
                         </Row>
                         </Col>
                         <Col>
-                                <div className="form-group">
+                                <div id="estimateFormLabel" className="form-group">
                                     <label id="reviewlabel" for="body">Further Details:</label>
                                     <textarea className="form-control" id="description" rows="15"></textarea>
                                 </div>

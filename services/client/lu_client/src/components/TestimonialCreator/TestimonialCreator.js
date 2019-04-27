@@ -3,6 +3,9 @@ import React from 'react'
 import styles from './TestimonialCreator.css'
 import colors from '../../assets/constants/colors'
 
+import { faThumbsUp, faTh} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import StarRatings from 'react-star-ratings';
 import Container from 'react-bootstrap/Container'
 var uuid = require('uuid')
@@ -69,7 +72,9 @@ class TestimonialCreator extends React.PureComponent{
     renderSubmittedPanel(){
         return(
             <div id="submittedPanelWrapper">
-                Thanks for submitting!
+                <h3>Thanks for submitting your testimonial!</h3>
+                <p>You can expect to see it show on our board in the next few days!</p>
+                <p><FontAwesomeIcon icon={faThumbsUp}/></p>
             </div>
         )
     }

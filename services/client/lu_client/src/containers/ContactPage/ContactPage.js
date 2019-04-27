@@ -20,13 +20,15 @@ class ContactPage extends React.PureComponent{
                     Contact Us
                 </h2>
                 <Row>
-                    <Col xs={2}>
-                        Our Information
+                    <Col xs={12} lg={2}>
+                    <div id="contactInfoWrapper">
+                    Our Information
+                    </div>
                     </Col>
-                    <Col xs={7}>
+                    <Col xs={12} lg={7}>
                     <EstimateCreator/>
                     </Col>
-                    <Col xs={3}>
+                    <Col className="d-none d-lg-block" lg={3}>
                         <div class="mapouter">
                             <div class="gmap_canvas">
                             <iframe width="550" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=LU%20Construction&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">

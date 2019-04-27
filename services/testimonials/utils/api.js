@@ -35,20 +35,22 @@ api.post('/create', (req, res, next) => {
 api.post('/approve', (req, res, next) => {
     authenticate(req, res , (r) => { 
         if (!r) 
-        return res.status(404).json({badAuth: 'Invalid or no authorization was provided, action denied.'})
+            res.status(404).json({badAuth: 'Invalid or no authorization was provided, action denied.'})
         else {
             var testimonials = req.body.testimonials
             testimonials.forEach(testimonial => {
-            Testimonial.findById(testimonial, (err, result) => {
+            Testimonial.findOne({_id: testimonial}, (err, result) => {
                 if (err || !result)
                     return res.status(404).json({err: "Error modifying testimonial"})
-                else result.approved = true
+                else {
+                result.approved = true
                 result.save(err => {
-                    if (err) res.status(404).json({err: "Error saving testimonial"})
+                    if (err) return res.status(404).json({err: "Error saving testimonial"})
+                    else return res.status(200).json({approved: "Testimonials have been approved."})
                     })
+                }
                 })
             })
-            res.status(200).json({approved: "Testimonials have been approved."})
         }
     })
 })
@@ -60,16 +62,12 @@ api.post('/delete', (req, res, next) => {
         else {
             var testimonials = req.body.testimonials
             testimonials.forEach(testimonial => {
-                Testimonial.findByIdAndRemove(testimonial, (err, result) => {
-                if (err || !result)
+                Testimonial.findOneAndDelete({_id: testimonial}, (err, result) => {
+                if (err)
                     return res.status(404).json({err: "Error modifying testimonial"})
-                else result.approved = true
-                result.save(err => {
-                    if (err) res.status(404).json({err: "Error saving testimonial"})
-                    })
+                else return res.status(200).json({approved: "Testimonials have been deleted."})
                 })
             })
-        res.status(200).json({approved: "Testimonials have been deleted."})
         }
     })
 })

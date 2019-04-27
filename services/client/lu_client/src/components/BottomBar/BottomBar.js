@@ -40,9 +40,6 @@ const BottomBar = () => {
                         </span>
                     </button>
                 </form>
-                <FontAwesomeIcon icon={faFacebook}/>
-                <FontAwesomeIcon icon={faYelp}/>
-                <FontAwesomeIcon icon={faHouzz}/>
             </div>
 
     </Navbar>

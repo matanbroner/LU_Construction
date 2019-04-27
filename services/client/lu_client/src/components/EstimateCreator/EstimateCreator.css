@@ -8,3 +8,10 @@
     padding-top: 3%;
     text-align: center;
 }
+
+#estimateFormLabel{
+    padding-top: 20px;
+    width: 80%;
+    margin: auto;
+    text-align: left;
+}
