@@ -7,6 +7,12 @@
     background: white;
     padding-top: 3%;
     text-align: center;
+    color: #4c5461;
+}
+
+#estimateCreatorWrapper > h3{
+    font-style: italic;
+    margin-bottom: 50px;
 }
 
 #estimateFormLabel{
@@ -14,4 +20,36 @@
     width: 80%;
     margin: auto;
     text-align: left;
+}
+
+#submitRow{
+    background: #4c535f;
+    color: white;
+    cursor: pointer;
+    margin-top: 50px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#submitEstimateButton{
+    border-radius: 10px;
+    border-radius   : 9px;
+    width: 100%;
+    height: 80px;
+    font-weight: bold;
+    color: white;
+    background: #4c535f;
+    border: 0;
+}
+
+#submitEstimateButton:hover{
+    background: #6d7686;
+}
+
+#submitRow:hover{
+    background: #6d7686;
+}
+
+#description{
+    margin: 0;
 }

@@ -1,4 +1,9 @@
 
+#projectPageWrapper{
+    max-width: 100vw;
+    min-height: 120vh;
+}
+
 #projectsTitle{
     margin: 3% auto;
     font-size: 2rem;

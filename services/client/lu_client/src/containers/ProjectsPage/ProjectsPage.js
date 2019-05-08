@@ -58,7 +58,7 @@ class ProjectsPage extends React.PureComponent{
     render(){
         return(
             this.state.projects
-            ? <Row>
+            ? <Row id="projectPageWrapper">
                 <Col className="d-none d-lg-block" id="projectsListPanel" lg={2}>
                     <Link to="/projects" id="projectsPageLink">
                         <span id="projectListPanelTitle">
