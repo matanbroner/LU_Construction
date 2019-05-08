@@ -1,9 +1,7 @@
 .scrolling-wrapper-flexbox {
-    display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
-  
-    
+    overflow: auto;
+    border-radius: 10px;
   }
 
   .card {

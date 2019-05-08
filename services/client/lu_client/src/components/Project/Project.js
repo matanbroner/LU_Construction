@@ -2,7 +2,7 @@
 import React from 'react'
 import styles from './Project.css'
 import "react-image-gallery/styles/css/image-gallery.css"
-
+import TabbedText from '../TabbedText/TabbedText'
 import ImageGallery from 'react-image-gallery';
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row'
 import SkyLight from 'react-skylight';
 import MediaQuery from 'react-responsive'
 import Spinner from '../Spinner/Spinner';
+import ScrollableSection from '../ScrollableSection/ScrollableSection'
 import {Link} from 'react-router-dom'
 import {formatDate} from '../../assets/utils/stringFormat'
 const superagent = require('superagent');
@@ -84,6 +85,43 @@ class Project extends React.PureComponent{
       return urls
     }
 
+    renderProjectDetails(){
+        return(
+            <div>
+                <p><h6>Project Date:</h6>{formatDate(this.state.project.createDate)}</p>
+                    <p><h6>Project Cost:</h6>${this.state.project.priceMin.toLocaleString()} - ${this.state.project.priceMax.toLocaleString()}</p>
+                    <p><h6>Project Location:</h6>{this.state.project.projectLocation}</p>
+                    <div id="getAnEstimatePrompt">
+                    <p>Like this project? Tell us what your dream house looks like!</p>
+                    <button><Link to="/contact">Get an estimate!</Link></button>
+                </div>
+            </div>
+        )
+    }
+
+    renderMobilePhotos(){
+        let urls = this.getPhotoUrls()
+        let images = urls.map(url => {
+            return (
+                    <img id="mobilePhotoWrapper" src={url.original}/>
+            )
+        })
+        return(
+            <div id="mobilePhotosScrollWrapper">
+                <MediaQuery orientation="portrait">
+                    <ScrollableSection height="100vh">
+                        {images}
+                    </ScrollableSection>
+                </MediaQuery>
+                <MediaQuery orientation="landscape">
+                    <ScrollableSection horizontal height="80vh" width="85vw">
+                        {images}
+                    </ScrollableSection>
+                </MediaQuery>
+            </div>
+        )
+    }
+
 
     render()
       {
@@ -95,36 +133,28 @@ class Project extends React.PureComponent{
                     <Col md={9} id="galleryAndHeader">
                         <div id="projectDetailsWrapper">
                             <span id="projectTitle">{this.state.project.projectName}</span>
-                            <p id="projectDescription">{this.state.project.projectDescription}</p>
+                            <MediaQuery query="(max-device-width: 1224px)">
+                                <TabbedText width="85vw" itemName="Project Description" content={this.state.project.projectDescription}>
+                                    <div id="detailsButtonWrapper">
+                                        <button id="projectDetailsButton" onClick={() => this.simpleDialog.show()}>View More Details</button>
+                                    </div>
+                                </TabbedText>
+                                {this.renderMobilePhotos()}
+                            </MediaQuery>
+                            <MediaQuery query="(min-device-width: 1225px)">
+                                <p id="projectDescription">{this.state.project.projectDescription}</p>
+                                <div id="gallery"><ImageGallery items={this.getPhotoUrls()} thumbnailPosition="right"/></div>
+                            </MediaQuery>
                         </div>
-                        <div id="gallery"><ImageGallery items={this.getPhotoUrls()} thumbnailPosition="right"/></div>
                     </Col>
                     <Col md={2} id="projectParamsWrapper" className="d-none d-lg-block">
                         <h5 id="detailsHeader">Project Details</h5>
-                        <p><h6>Project Date:</h6>{formatDate(this.state.project.createDate)}</p>
-                        <p><h6>Project Cost:</h6>${this.state.project.priceMin.toLocaleString()} - ${this.state.project.priceMax.toLocaleString()}</p>
-                        <p><h6>Project Type:</h6>New Construction</p>
-                        <p><h6>Project Location:</h6>{this.state.project.projectLocation}</p>
-                        <div id="getAnEstimatePrompt">
-                            <p>Like this project? Tell us what your dream house looks like!</p>
-                            <button>Get an estimate!</button>
-                        </div>
+                        {this.renderProjectDetails()}
                     </Col>
                 </Row>
                 <MediaQuery query={"(max-width: 901px)"}>
-                <button onClick={() => this.simpleDialog.show()}>Open Modal</button>
                 <SkyLight dialogStyles={projectDetailsModalStyles} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Project Details">
-                    <p><h6>Project Year:</h6>2018</p>
-                    <p><h6>Project Cost:</h6>$750,001 - $1,000,000</p>
-                    <p><h6>Project Type:</h6>New Construction</p>
-                    <p><h6>Project Location:</h6>San Jose, CA</p>
-                    <div id="getAnEstimatePrompt">
-                        <p>Like this project? Tell us what your dream house looks like!</p>
-                       
-                            <button onClick={() => this.props.history.add('/contact')}>
-                                Get an estimate!
-                            </button>
-                    </div>
+                    {this.renderProjectDetails()}
                 </SkyLight>
                 </MediaQuery>
           </Col>

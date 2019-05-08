@@ -2,10 +2,10 @@
 const createTemplate = (estimate) => { 
     console.log(estimate)
     let name = estimate.name
-    let constructionType = estimate.constructionType
-    let body = estimate.body
+    let constructionType = estimate.projectType
+    let body = estimate.description
     let email = estimate.email
-    let date = estimate.date
+    let date = formatDate()
 
     var htmlBody = "<h3>LU Construction Estimate Request</h3><br/>"
     htmlBody += "<p><strong>Date:</strong> " + date + "</p></br>"
@@ -15,6 +15,19 @@ const createTemplate = (estimate) => {
     htmlBody += "<p><strong>Body:<strong/> " + body + "</p></br>"
 
     return htmlBody
+}
+
+const formatDate = () => {
+    var m = new Date();
+    var dateString =
+    m.getUTCFullYear() + "/" +
+    ("0" + (m.getUTCMonth()+1)).slice(-2) + "/" +
+    ("0" + m.getUTCDate()).slice(-2) + " " +
+    ("0" + m.getUTCHours()).slice(-2) + ":" +
+    ("0" + m.getUTCMinutes()).slice(-2) + ":" +
+    ("0" + m.getUTCSeconds()).slice(-2);
+
+    return dateString
 }
 
 module.exports = createTemplate

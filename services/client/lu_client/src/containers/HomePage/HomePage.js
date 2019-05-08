@@ -89,7 +89,7 @@ class HomePage extends React.PureComponent{
                             </Row>
                         </MediaQuery>
                         <MediaQuery query="(max-width: 901px)">
-                            <ScrollableSection orient='x'>
+                            <ScrollableSection horizontal>
                                 {this.renderFeaturedProjects()}
                             </ScrollableSection>
                         </MediaQuery>
