@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route} from 'react-router-dom'
-
+import ReactGA from 'react-ga';
 import HomePage from './containers/HomePage/HomePage';
 import SignInPage from './containers/SignInPage/SignInPage';
 import TestimonialsPage from './containers/TestimonialsPage/TestimonialsPage'
@@ -16,7 +16,10 @@ import defaultStyling from './index.css'
 import { createBrowserHistory as createHistory } from 'history'
 
 const history = createHistory()
-
+ReactGA.initialize('UA-00000000-1');
+history.listen((location, action) => {
+    ReactGA.pageview(location.pathname + location.search);
+});
 
 ReactDOM.render((
     <Router history={history}>

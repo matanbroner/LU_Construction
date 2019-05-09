@@ -317,7 +317,7 @@ class ManageProjects extends React.PureComponent{
                         }
                     </div>
                     <Row>
-                        <Col xs={12} id="submitRow">
+                        <Col xs={12} id="submitProjectRow">
                             <button type="submit" id="submitProject" form="editProjectForm" onClick={this.submitProject}>Submit Changes</button>
                             {!this.state.isNewProject ? <button className='btn btn-danger' id="deleteProject" onClick={this.deleteProject}>Delete Project</button> : null}
                         </Col>

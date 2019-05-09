@@ -44,11 +44,11 @@ class EstimateCreator extends React.Component{
     render(){
         return(
             <div id="estimateCreatorWrapper">
-                <h3>Tell us a bit about your project!</h3>
+                <h3 id="estimateCreatorHeader">Tell us a bit about your project!</h3>
                 <form id="estimateForm" onSubmit={this.sendEstimate}>
                 <Col>
                     <Row>
-                        <Col>
+                        <Col xs={12} md={6}>
                             <Row>
                             <Col>
                                 <div class="form-group">
@@ -80,7 +80,7 @@ class EstimateCreator extends React.Component{
                                 <div className="form-group">
                                     <label  for="projectType" id="estimateFormLabel">* Project type:</label>
                                         <select id="projectType" onChange={this.updateState} required>
-                                            <option disabled defaultValue>Select a Project Type</option>
+                                            <option disabled selected>Select a Project Type</option>
                                             <option value="New Construction">New Construction</option>
                                             <option value="Bathroom Remodel">Bathroom Remodel</option>
                                             <option value="Kitchen Remodel">Kitchen Remodel</option>
@@ -94,7 +94,7 @@ class EstimateCreator extends React.Component{
                         <Col>
                                 <div id="estimateFormLabel" className="form-group">
                                     <label id="reviewlabel" for="body">Further Details:</label>
-                                    <textarea onChange={this.updateState} className="form-control" id="description" rows="15"></textarea>
+                                    <textarea onChange={this.updateState} className="form-control" id="description" rows="10"></textarea>
                                 </div>
                         </Col>
                     </Row>
