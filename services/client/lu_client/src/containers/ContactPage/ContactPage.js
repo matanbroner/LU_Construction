@@ -8,12 +8,14 @@ import EstimateCreator from '../../components/EstimateCreator/EstimateCreator'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faMap, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
+
 class ContactPage extends React.PureComponent{
     constructor(){
         super()
 
         this.state = {}
     }
+
 
     renderContactInfo(){
         return(
@@ -25,12 +27,26 @@ class ContactPage extends React.PureComponent{
         )
     }
 
+    renderMobileContactInfo(){
+        return(
+            <div id="mobileContactInfo">
+                <FontAwesomeIcon icon={faPhone}/> (888) 535-5206
+                <hr/>
+                <FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95117
+                <hr/>
+                <FontAwesomeIcon icon={faEnvelope}/> appointments@luconstruction.com
+                <hr/>
+            </div>
+        )
+    }
+
     renderMap(){
+        console.log("trigger map")
         const defaultProps = {
             center: {lat: 37.306597, lng: -121.95},
             zoom: 15
           };
-        return <div id="mapWrapper">
+        return (<div id="mapWrapper">
                     <GoogleMapReact
                         bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_MAP_API_KEY}}
                         defaultCenter={defaultProps.center}
@@ -43,7 +59,7 @@ class ContactPage extends React.PureComponent{
                         text={'Kreyser Avrora'} 
                         />
                     </GoogleMapReact>
-                </div>
+                </div>)
     }
 
     renderStandardView(){
@@ -59,11 +75,32 @@ class ContactPage extends React.PureComponent{
                     {this.renderContactInfo()}
                     <hr id="contactDivider"/>
                 </p>
-                <Row>
-                    <Col className="d-none d-lg-block" lg={5}>
+                <Row id="contentRow">
+                    <Col id="mapColumn" lg={5}>
                         {this.renderMap()}
                     </Col>
                     <Col xs={12} lg={6}>
+                        <EstimateCreator/>
+                    </Col>
+                </Row>
+            </div>
+        )
+    }
+
+    renderMobileView(){
+        return(
+            <div id="allContactPageContentMobile">
+                <h2 id="contactPageTitle">
+                    Contact Us
+                </h2>
+                <p id="contactPromptMobile">
+                    Please feel welcome to send us inquiries about any projects you may have in mind. <br/>
+                    Our team is dedicated to making your dreams come true!
+                    <hr/>
+                    {this.renderMobileContactInfo()}
+                </p>
+                <Row>
+                    <Col xs={12}>
                         <EstimateCreator/>
                     </Col>
                 </Row>
@@ -75,7 +112,7 @@ class ContactPage extends React.PureComponent{
         return(
             <div>
                 <MediaQuery query="(max-device-width: 1224px)">
-                    <div>Mobile View</div>
+                    {this.renderMobileView()}
                 </MediaQuery> 
                 <MediaQuery query="(min-device-width: 1225px)">
                     {this.renderStandardView()}

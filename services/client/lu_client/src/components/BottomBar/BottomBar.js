@@ -19,27 +19,31 @@ const BottomBar = () => {
     <Navbar id="bottomBar" >
       <Navbar.Brand as={Link} to='/'><Image id="bottomLogo" src={mainLogo}/></Navbar.Brand>
             <div style={{display: "flex"}}>
-                <form action="tel:4084100240" id="createContactAction">
+                <form action="tel:(888) 535-5206" id="createContactAction">
                     <button type="submit" id="submitContactAction">
                         <span id='infoTag'><FontAwesomeIcon icon={faPhone}/>
-                            <MediaQuery query="(min-width: 1100px)">(408) 547-9833</MediaQuery>
+                            <MediaQuery query="(min-width: 1100px)">(888) 535-5206</MediaQuery>
                         </span>
                     </button>
                 </form>
-                <form action="email:matanbroner@gmail.com" id="createContactAction">
-                    <button type="submit" id="submitContactAction">
+                <div id="createContactAction">
+                    <a href={`mailto:appointments@luconstruction.com`}>
+                    <button id="submitContactAction">
                         <span id='infoTag'><FontAwesomeIcon icon={faEnvelope}/>
-                            <MediaQuery query="(min-width: 1100px)">lu_construction@gmail.com</MediaQuery>
+                            <MediaQuery query="(min-width: 1100px)">appointments@luconstruction.com</MediaQuery>
                         </span>
                     </button>
-                </form>
-                <form action="/https://goo.gl/maps/efmKZoeS3eL2" id="createContactAction">
-                    <button type="submit" id="submitContactAction">
-                        <span id='infoTag'><FontAwesomeIcon icon={faMapMarkedAlt}/>
-                            <MediaQuery query="(min-width: 1100px)">3040 Winchester Avenue, San Jose CA</MediaQuery>
-                        </span>
-                    </button>
-                </form>
+                    </a>
+                </div>
+                <div id="createContactAction">
+                    <a href={`https://www.google.com/maps/place/Lu+Construction/@37.3065198,-121.9505995,15z/data=!4m2!3m1!1s0x0:0xf0e3dc2f722116e5?sa=X&ved=2ahUKEwi2pt6al43iAhVBO30KHc3XAq8Q_BIwCnoECA8QCA`}> 
+                        <button id="submitContactAction">
+                            <span id='infoTag'><FontAwesomeIcon icon={faMapMarkedAlt}/>
+                                <MediaQuery query="(min-width: 1100px)">1101 S Winchester Blvd, San Jose, CA 95117</MediaQuery>
+                            </span>
+                        </button>
+                    </a>
+                </div>
             </div>
 
     </Navbar>

@@ -14,6 +14,7 @@ services:
       - 5000:5000
     depends_on:
       - mongo
+    restart: unless-stopped
       
   mongo:
     container_name: mongo
@@ -23,6 +24,7 @@ services:
       - '27018:27018'
     volumes:
       - lu_volume:/var/lib/db/data
+    restart: unless-stopped
   
   client:
     build:
@@ -37,12 +39,13 @@ services:
       - '/usr/src/app/node_modules'
     depends_on:
       - mongo
+    restart: unless-stopped
 
   nginx:
     build:
       context: ./services/nginx
       dockerfile: Dockerfile.nginx
-    restart: always
+    restart: unless-stopped
     ports:
       - 80:80
     command: [nginx-debug, '-g', 'daemon off;']
@@ -64,6 +67,7 @@ services:
       - users
     depends_on:
       - mongo
+    restart: unless-stopped
 
   testimonials:
     build:
@@ -76,6 +80,7 @@ services:
       - 5200:5200
     depends_on:
       - mongo
+    restart: unless-stopped
     
     
 

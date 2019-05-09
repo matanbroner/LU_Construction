@@ -5,6 +5,7 @@ import { Route, Link } from "react-router-dom";
 import ManageProjects from '../ManageProjects/ManageProjects'
 import ManageTestimonials from '../ManageTestimonials/ManageTestimonials'
 import ManageUsers from '../ManangeUsers/ManageUsers'
+import AnalyticsPage from '../AnalyticsPage/AnalyticsPage'
 import Spinner from '../../components/Spinner/Spinner'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -35,7 +36,6 @@ class UserDashboard extends React.PureComponent{
             this.props.history.replace('/sign_in')
         }
         else{
-            console.log(response.user)
             this.setState({
                 name: response.user.name,
                 role: response.user.role,
@@ -68,6 +68,7 @@ class UserDashboard extends React.PureComponent{
                     <Route path={`${this.props.match.path}/manage_projects`} component={ManageProjects}/>
                     <Route path={`${this.props.match.path}/manage_testimonials`} component={ManageTestimonials}/>
                     <Route path={`${this.props.match.path}/manage_users`} component={ManageUsers}/>
+                    <Route path={`${this.props.match.path}/analytics`} component={AnalyticsPage}/>
                     <Route
                     exact
                     path={this.props.match.path}
@@ -94,7 +95,11 @@ class UserDashboard extends React.PureComponent{
                                 <UserDashAction icon={faHome} background="#f96a86" action="Manage Homepage"/>
                             </Row>
                             <Row id="tasksAndTrackingRow">
-                                <UserDashAction icon={faChartLine} background="#a156f0" action="Site Analytics"/>
+                                <UserDashAction
+                                 icon={faChartLine}
+                                 redirect={`${this.props.match.path}/analytics`}
+                                 background="#a156f0" 
+                                 action="Site Analytics"/>
                                 {this.state.role === 'Administrator' 
                                     ? <UserDashAction 
                                         icon={faUser} 
