@@ -131,7 +131,7 @@ class TestimonialCreator extends React.PureComponent{
                                     <label id="reviewlabel" for="body">Describe your experience:</label>
                                     <textarea onChange={this.updateState} className="form-control" id="testimonialDescription" rows="3"></textarea>
                                 </div>
-                            <button type="submit" id="submitreview" className="btn btn-primary">Submit</button>	
+                            <button type="submit" id="submitreview" className="btn btn-primary">Submit Testimonial</button>	
 
                         </form>
                         </div>
