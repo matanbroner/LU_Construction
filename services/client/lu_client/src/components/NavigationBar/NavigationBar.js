@@ -31,7 +31,7 @@ const NavigationBar = () => {
           </Navbar.Text>
           <Nav.Link as={Link} to='/'>Home</Nav.Link>
           <Nav.Link as={Link} to='/projects'>Projects</Nav.Link>
-          <Nav.Link as={Link} to='/'>About</Nav.Link>
+          <Nav.Link as={Link} to='/about'>About</Nav.Link>
           <Nav.Link as={Link} to='/testimonials'>Testimonials</Nav.Link>
           <Nav.Link as={Link} to='/contact'>Contact</Nav.Link>
           <Nav.Link as={Link} to='/sign_in'>{localStorage.getItem('jwtToken') ? 'Profile' : 'Sign In'}</Nav.Link>

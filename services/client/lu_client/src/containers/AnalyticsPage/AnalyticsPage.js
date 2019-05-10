@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './AnalyticsPage.css'
 import { GoogleProvider, GoogleDataChart } from 'react-analytics-widget'
+var superagent = require('superagent')
 
 ;(function(w, d, s, g, js, fjs) {
     g = w.gapi || (w.gapi = {})
@@ -34,6 +35,41 @@ const last7days = {
     }
   }
 
+  const last30days = {
+    reportType: "ga",
+    query: {
+      dimensions: "ga:date",
+      metrics: "ga:pageviews",
+      "start-date": "30daysAgo",
+      "end-date": "yesterday"
+    },
+    chart: {
+      type: "LINE",
+      options: {
+        // options for google charts
+        // https://google-developers.appspot.com/chart/interactive/docs/gallery
+        title: "Last 30 days pageviews"
+      }
+    }
+  }
+
+  let reportRequests = [
+    {
+      viewId: process.env.GOOGLE_MAPS_API_KEY,
+      dateRanges: [
+        {
+          startDate: '7daysAgo',
+          endDate: 'today'
+        }
+      ],
+      metrics: [
+        {
+          expression: 'ga:sessions'
+        }
+      ]
+    }
+  ]
+
 class AnalyticsPage extends React.PureComponent{
     constructor(props){
         super(props)
@@ -41,6 +77,10 @@ class AnalyticsPage extends React.PureComponent{
         this.state = {
             ids: "ga:194968814"
         }
+    }
+
+    componentDidMount(){
+
     }
 
     render(){
@@ -51,8 +91,10 @@ class AnalyticsPage extends React.PureComponent{
           }
         return(
             <div>
-            <GoogleProvider clientId={CLIENT_ID}>
-                <GoogleDataChart views={views} config={last7days} />
+                Hello
+            <GoogleProvider id="graphContainer" clientId={CLIENT_ID}>
+                <GoogleDataChart style={{display: 'inline-block',border: '8px solid #eee', padding: 10}} views={views} config={last30days} />
+                <GoogleDataChart style={{display: 'inline-block', border: '1px solid #eee', padding: 10}} views={views} config={last7days} />
             </GoogleProvider>
          </div>
         )
