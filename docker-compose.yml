@@ -45,6 +45,8 @@ services:
     build:
       context: ./services/nginx
       dockerfile: Dockerfile.nginx
+    volumes:
+      - './letsencrypt_volume:/usr/share/nginx/html'
     restart: unless-stopped
     ports:
       - 80:80
@@ -80,9 +82,7 @@ services:
       - 5200:5200
     depends_on:
       - mongo
-    restart: unless-stopped
-    
-    
+    restart: unless-stopped 
 
 volumes:
   lu_volume:
