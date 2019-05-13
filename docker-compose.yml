@@ -46,7 +46,7 @@ services:
       context: ./services/nginx
       dockerfile: Dockerfile.nginx
     volumes:
-      - './letsencrypt_volume:/usr/share/nginx/html'
+      - './letsencrypt-site:/usr/share/nginx/html'
     restart: unless-stopped
     ports:
       - 80:80
