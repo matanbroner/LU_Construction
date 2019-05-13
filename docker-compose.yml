@@ -48,11 +48,11 @@ services:
     restart: unless-stopped
     ports:
       - 80:80
+      - 443:443
+    volumes:
+      - certs:/etc/letsencrypt
+      - certs-data:/data/letsencrypt
     command: [nginx-debug, '-g', 'daemon off;']
-    depends_on:
-      - client
-      - projects
-      - users
 
   projects:
     build:
