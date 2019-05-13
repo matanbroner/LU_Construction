@@ -50,8 +50,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - lu_volume:/etc/letsencrypt
-      - lu_volume:/data/letsencrypt
+      - './certs:/etc/nginx/certs'
     command: [nginx-debug, '-g', 'daemon off;']
 
   projects:
