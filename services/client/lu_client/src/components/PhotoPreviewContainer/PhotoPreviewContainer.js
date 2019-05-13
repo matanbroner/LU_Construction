@@ -7,6 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+const uuid = require('uuid')
 
 const PhotoPreviewContainer = (props) => {
 
@@ -17,8 +18,8 @@ const PhotoPreviewContainer = (props) => {
         return props.photos.map(photo => 
             {
                 return(
-                    <Col xs={12} lg={3} id="imageWrapper">
-                        <img id={photo.key} className={`${photo.url === props.project.coverImage ? 'coverImage' : null}`} src={photo.url}/>   
+                    <Col key={uuid()} xs={12} lg={3} id="imageWrapper">
+                        <img alt="project-cover" id={photo.key} className={`${photo.url === props.project.coverImage ? 'coverImage' : null}`} src={photo.url}/>   
                         <div id="dropdownWrapper">
                             <DropdownButton 
                             id="dropdown-basic-button" 

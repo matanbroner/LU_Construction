@@ -4,8 +4,6 @@ import Spinner from '../../components/Spinner/Spinner'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faHome, faLock } from '@fortawesome/free-solid-svg-icons'
@@ -30,7 +28,7 @@ class SignInPage extends React.PureComponent{
     }
 
     componentDidMount(){
-        const authenticated = authenticate(r => this.redirectIfAuthenticated(r))
+        authenticate(r => this.redirectIfAuthenticated(r))
     }
 
     redirectIfAuthenticated(response){
@@ -101,7 +99,7 @@ class SignInPage extends React.PureComponent{
                             <h3 id="loginTitle">Sign In <FontAwesomeIcon id="titleIcon" icon={faLock}/></h3>
                             <Row className="row row justify-content-center">
                                 <Col md={5} id="loginCreds">
-                                <form role="form" onSubmit={this.verifyCreds}>
+                                <form onSubmit={this.verifyCreds}>
                                     <div className="form-group">
                                         
                                         <input onChange={this.updateState} type="username" className="form-control cred" id="username" placeholder="Enter username" required/>

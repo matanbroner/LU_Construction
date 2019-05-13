@@ -4,12 +4,11 @@ import styles from'./ProjectsPage.css'
 import { Route, Link } from "react-router-dom";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faTools } from '@fortawesome/free-solid-svg-icons'
 import ProjectPreview from '../../components/ProjectPreview/ProjectPreview'
 import Project from '../../components/Project/Project'
 import Spinner from '../../components/Spinner/Spinner'
 const superagent = require('superagent');
+const uuid = require('uuid')
 
 
 class ProjectsPage extends React.PureComponent{
@@ -43,14 +42,14 @@ class ProjectsPage extends React.PureComponent{
 
     renderProjects(){
         return this.state.projects.map(project => {
-            return <ProjectPreview project={project} colSize={4}/>
+            return <ProjectPreview key={uuid()} project={project} colSize={4}/>
         })
     }
 
     getSidebarProjectList(){
         return this.state.projects.map(project => {
             return(
-                <p id="projectSidebarItem" onClick={() => this.redirectToProject(project.projectId)}>{project.projectName}</p>
+                <p key={uuid()} id="projectSidebarItem" onClick={() => this.redirectToProject(project.projectId)}>{project.projectName}</p>
             )
         })
     }

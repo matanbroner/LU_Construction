@@ -52,6 +52,10 @@ services:
     volumes:
       - ./services/nginx/certs/:/etc/nginx/certs/
     command: [nginx-debug, '-g', 'daemon off;']
+    depends_on:
+      - client
+      - projects
+      - users
 
   projects:
     build:
