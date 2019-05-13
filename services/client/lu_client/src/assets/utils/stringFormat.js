@@ -7,7 +7,6 @@ export function formatDate(date) {
       "November", "December"
     ];
   
-    var day = format.getDay();
     var monthIndex = format.getMonth();
     var year = format.getFullYear();
   

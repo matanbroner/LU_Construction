@@ -77,7 +77,7 @@ class ManageProjects extends React.PureComponent{
         let projects = []
         this.state.raw_projects.map(project => {
             projects.push(
-                <Col xs={12} lg={4} id="editableProject" >
+                <Col xs={12} lg={4} key={uuid()} id="editableProject" >
                 <ProjectPreview 
                     project={project}
                     colSize={12}/>

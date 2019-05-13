@@ -5,11 +5,10 @@ import Row from 'react-bootstrap/Row'
 import Checkbox from 'react-simple-checkbox'
 import TestimonialItem from '../../components/TestimonialItem/TestimonialItem'
 import Spinner from '../../components/Spinner/Spinner'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Dropdown from 'react-bootstrap/Dropdown'
 
 var superagent = require('superagent')
+const uuid = require('uuid')
 
 class ManageTestimonials extends React.PureComponent{
     constructor(props){
@@ -76,7 +75,7 @@ class ManageTestimonials extends React.PureComponent{
     createTestimonials(){
         return this.state.items.map(item => {
             return (
-            <Col xs={12} id="editableTestimonial">
+            <Col key={uuid()} xs={12} id="editableTestimonial">
                 <Checkbox
                 id={item._id}
                 size={3}

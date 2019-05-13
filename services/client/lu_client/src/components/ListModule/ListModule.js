@@ -61,7 +61,7 @@ class ListModule extends React.PureComponent{
     renderItems(){
         return this.state.items.map(item => {
             return( 
-                <li id={item.id} className="list-group-item listModuleItem">{item.item} 
+                <li key={uuid()} id={item.id} className="list-group-item listModuleItem">{item.item} 
                     <button id={item.id} className="removeItemButton" onClick={() => this.removeItem(item.id)}>
                         <FontAwesomeIcon icon={faTrashAlt}/>
                     </button>

@@ -14,9 +14,7 @@ import ScrollableSection from '../ScrollableSection/ScrollableSection'
 import {Link} from 'react-router-dom'
 import {formatDate} from '../../assets/utils/stringFormat'
 const superagent = require('superagent');
-
-
-let lorem1 = "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+const uuid = require('uuid')
 
 var projectDetailsModalStyles={
     width: '70%',
@@ -103,7 +101,7 @@ class Project extends React.PureComponent{
         let urls = this.getPhotoUrls()
         let images = urls.map(url => {
             return (
-                    <img id="mobilePhotoWrapper" src={url.original}/>
+                    <img key={uuid()} id="mobilePhotoWrapper" src={url.original}/>
             )
         })
         return(

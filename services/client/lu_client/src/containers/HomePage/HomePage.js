@@ -12,6 +12,7 @@ import ProjectPreview from '../../components/ProjectPreview/ProjectPreview'
 import ScrollableSection from '../../components/ScrollableSection/ScrollableSection'
 import TestimonialItem from '../../components/TestimonialItem/TestimonialItem'
 const superagent = require('superagent')
+const uuid = require('uuid')
 
 let review = "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 
@@ -50,6 +51,7 @@ class HomePage extends React.PureComponent{
         if(this.state.projects)
             return this.state.projects.map(project => {
                 return <ProjectPreview 
+                        key={uuid()}
                         location="San Jose" 
                         project={project}
                         colSize={6}/>
@@ -59,7 +61,7 @@ class HomePage extends React.PureComponent{
     renderTestimonials(){
         if(this.state.testimonials)
             return this.state.testimonials.map(testimonial => {
-                return <TestimonialPreview item={testimonial}/>
+                return <TestimonialPreview key={uuid()} item={testimonial}/>
             })
     }
 

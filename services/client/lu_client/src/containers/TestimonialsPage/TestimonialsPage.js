@@ -1,19 +1,16 @@
 import React from 'react'
 
 import styles from './TestimonialsPage.css'
-import MediaQuery from 'react-responsive';
 
 import TestimonialCreator from '../../components/TestimonialCreator/TestimonialCreator'
 import TestimonialItem from '../../components/TestimonialItem/TestimonialItem'
-import ScrollableSection from '../../components/ScrollableSection/ScrollableSection'
 import Spinner from '../../components/Spinner/Spinner'
 
 import { Row, Col } from 'react-bootstrap'
 var superagent = require('superagent')
+const uuid = require('uuid')
 
 
-let lorem1 = "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-let lorem2= "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
 class TestimonialsPage extends React.PureComponent{
     constructor(props){
         super(props)
@@ -37,7 +34,7 @@ class TestimonialsPage extends React.PureComponent{
 
     renderTestimonials(){
         return this.state.items.map(item => {
-            return <TestimonialItem item={item}/>
+            return <TestimonialItem key={uuid()} item={item}/>
         })
     }
 
