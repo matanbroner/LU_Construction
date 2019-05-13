@@ -19,13 +19,14 @@ const BottomBar = () => {
     <Navbar id="bottomBar" >
       <Navbar.Brand as={Link} to='/'><Image id="bottomLogo" src={mainLogo}/></Navbar.Brand>
             <div style={{display: "flex"}}>
-                <form action="tel:(888) 535-5206" id="createContactAction">
+                <div id="createContactAction">
                     <button type="submit" id="submitContactAction">
-                        <span id='infoTag'><FontAwesomeIcon icon={faPhone}/>
+                        <span id='infoTag'>
+                        <a target="_top" href="tel:(888) 535-5206"><FontAwesomeIcon icon={faPhone}/></a>
                             <MediaQuery query="(min-width: 1100px)">(888) 535-5206</MediaQuery>
                         </span>
                     </button>
-                </form>
+                </div>
                 <div id="createContactAction">
                     <a href={`mailto:appointments@luconstruction.com`}>
                     <button id="submitContactAction">
