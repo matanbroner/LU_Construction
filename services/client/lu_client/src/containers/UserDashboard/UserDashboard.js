@@ -80,6 +80,23 @@ class UserDashboard extends React.PureComponent{
                                     <h1>Hello, {this.state.name}</h1>
                                 </Col>
                             </Row>
+                            {
+                               this.state.role === 'Administrator' 
+                               ?    <Row id="adminRow">
+                                        <UserDashAction 
+                                            icon={faUser} 
+                                            background="#009bee" 
+                                            redirect={`${this.props.match.path}/manage_users`}
+                                            action="Manage Users"/>
+                                        <UserDashAction 
+                                            icon={faHardHat} 
+                                            background="#00ae00" 
+                                            action="Manage Projects"
+                                            redirect={`${this.props.match.path}/manage_projects`}
+                                        />
+                                    </Row>
+                                : null
+                            }
                             <Row id="actionsRow">
                                 <UserDashAction 
                                 icon={faStar} 
@@ -87,28 +104,12 @@ class UserDashboard extends React.PureComponent{
                                 action="Manage Testimonials"
                                 redirect={`${this.props.match.path}/manage_testimonials`}
                                 />
-                                <UserDashAction 
-                                icon={faHardHat} 
-                                background="#00ae00" 
-                                action="Manage Projects"
-                                redirect={`${this.props.match.path}/manage_projects`}
-                                />
-                                <UserDashAction icon={faHome} background="#f96a86" action="Manage Homepage"/>
-                            </Row>
-                            <Row id="tasksAndTrackingRow">
                                 <UserDashAction
                                  icon={faChartLine}
                                  redirect={`${this.props.match.path}/analytics`}
                                  background="#a156f0" 
                                  action="Site Analytics"/>
-                                {this.state.role === 'Administrator' 
-                                    ? <UserDashAction 
-                                        icon={faUser} 
-                                        background="#009bee" 
-                                        redirect={`${this.props.match.path}/manage_users`}
-                                        action="Manage Users"/>
-                                    : <Col className="d-none d-lg-block" lg={4}/>
-                                }
+                                <UserDashAction icon={faHome} background="#f96a86" action="Manage Homepage"/>
                             </Row>
                         </Col>
                     }

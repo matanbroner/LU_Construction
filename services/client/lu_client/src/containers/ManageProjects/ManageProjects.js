@@ -15,6 +15,7 @@ import SkyLight from 'react-skylight';
 import { faPlusCircle, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDateProper } from '../../assets/utils/stringFormat'
+import { verifyIsAdmin } from '../../assets/utils/verifyIsAdmin'
 const uuid = require('uuid')
 const superagent = require('superagent');
 require('dotenv').config()
@@ -58,6 +59,9 @@ class ManageProjects extends React.PureComponent{
     }
 
     componentDidMount(){
+        verifyIsAdmin(r => {
+            if (!r) this.props.history.replace('/user_dash')
+        })
         this.fetchProjects()
     }
 

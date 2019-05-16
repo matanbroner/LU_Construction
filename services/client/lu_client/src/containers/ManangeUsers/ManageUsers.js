@@ -7,6 +7,7 @@ import Table from 'react-bootstrap/Table'
 import Spinner from '../../components/Spinner/Spinner'
 import SkyLight from 'react-skylight';
 import ColorPicker from '../../components/ColorPicker/ColorPicker'
+import { verifyIsAdmin } from '../../assets/utils/verifyIsAdmin'
 const superagent = require('superagent');
 const uuid = require('uuid')
 const APP_CONSTANTS = require ('../../assets/constants/admin')
@@ -38,6 +39,9 @@ class ManageUsers extends React.PureComponent{
     }
 
     componentDidMount(){
+        verifyIsAdmin(r => {
+            if (!r) this.props.history.replace('/user_dash')
+        })
         this.fetchUsers()
     }
 
