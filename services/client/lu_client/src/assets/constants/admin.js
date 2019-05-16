@@ -1,0 +1,1 @@
+exports.roles = ["Administrator", "Moderator"]

@@ -1,6 +1,6 @@
 
 #testimonialPageWrapper{
-    
+    max-width: 99vw;
 }
 
 #testimonialsHeader{
@@ -24,7 +24,19 @@
     border-radius: 10px;
 }
 
+#testimonialColumn > div > #testimonialItemWrapper {
+    margin: 15px auto;
+    padding-right: 11px;
+}
+
 #createPanel{
     min-height: 100%;
     margin-top:5%;
+}
+
+@media(max-width: '1224px'){
+    
+    #testimonialColumn{
+        margin-left: 10px;
+    }
 }

@@ -1,7 +1,7 @@
 
-  @media(max-width: '600px'){
-    
-    
+  #homePageWrapper{
+    min-height: 100vh;
+    overflow: auto;
   }
 
   .bannerimage {

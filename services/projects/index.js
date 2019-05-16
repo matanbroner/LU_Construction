@@ -4,10 +4,17 @@ const mongoose = require('mongoose')
 
 require('dotenv').config()
 
-mongoose.connect('mongodb://mongo:' + process.env.MONGO_PORT + '/projects')
-  .catch(err => {
-    console.log(err)
+const db = `mongodb://mongo:${process.env.MONGO_PORT}/projects`;
+
+// Connect to MongoDB
+mongoose.connect(db, {
+    "auth": { "authSource": "admin" },
+    "user": process.env.MONGO_USER,
+    "pass": process.env.MONGO_PASS,
+    "useMongoClient": true
   })
+  .then(() => console.log("MongoDB successfully connected to Projects"))
+  .catch(err => console.log(err));
 
 var app = express()
 

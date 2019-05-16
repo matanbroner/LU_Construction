@@ -39,6 +39,10 @@
     border: #465935;
 }
 
+#logoutButton:hover{
+    background: #e45051;
+}
+
 #dashboardButton{
     padding-top: 7px;
     margin-top: 3vh;

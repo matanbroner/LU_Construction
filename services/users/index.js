@@ -20,11 +20,12 @@ app.use(bodyParser.json());
 const db = `mongodb://mongo:${process.env.MONGO_PORT}/users`;
 
 // Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+mongoose.connect(db, {
+    "auth": { "authSource": "admin" },
+    "user": process.env.MONGO_USER,
+    "pass": process.env.MONGO_PASS,
+    "useMongoClient": true
+  })
   .then(() => console.log("MongoDB successfully connected to Users"))
   .catch(err => console.log(err));
 
@@ -44,9 +45,11 @@ app.get('/all', passport.authenticate('jwt', {session: false}), (req, res) => {
     else{
       let users = documents.map(doc => {
         return {
+          _id: doc._id,
           name: doc.name,
           username: doc.username,
-          role: doc.role
+          role: doc.role,
+          color: doc.color
         }
       })
       res.status(200).json(users)

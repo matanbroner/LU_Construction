@@ -20,7 +20,6 @@ const FileUploader = (props) => {
       <Dropzone
         getUploadParams={getUploadParams}
         onChangeStatus={handleChangeStatus}
-        // SubmitButtonComponent={() => console.log('SUBMITTED')}
         onSubmit={handleSubmit}
         accept="image/*,audio/*,video/*"
       />

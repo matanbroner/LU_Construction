@@ -19,29 +19,28 @@ class ContactPage extends React.PureComponent{
 
     renderContactInfo(){
         return(
-            <div id="contactInfo">
+            <span id="contactInfo">
                 <FontAwesomeIcon icon={faPhone}/> (888) 535-5206
-                <div id="seperatorContact"><FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95117</div>
+                <span id="seperatorContact"><FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95117</span>
                 <FontAwesomeIcon icon={faEnvelope}/> appointments@luconstruction.com
-            </div>
+            </span>
         )
     }
 
     renderMobileContactInfo(){
         return(
-            <div id="mobileContactInfo">
+            <span id="mobileContactInfo">
                 <FontAwesomeIcon icon={faPhone}/> (888) 535-5206
                 <hr/>
                 <FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95117
                 <hr/>
                 <FontAwesomeIcon icon={faEnvelope}/> appointments@luconstruction.com
                 <hr/>
-            </div>
+            </span>
         )
     }
 
     renderMap(){
-        console.log("trigger map")
         const defaultProps = {
             center: {lat: 37.306597, lng: -121.95},
             zoom: 15
@@ -73,8 +72,8 @@ class ContactPage extends React.PureComponent{
                     Our team is dedicated to making your dreams come true!
                     <hr/>
                     {this.renderContactInfo()}
-                    <hr id="contactDivider"/>
                 </p>
+                <hr id="contactDivider"/>
                 <Row id="contentRow">
                     <Col id="mapColumn" lg={5}>
                         {this.renderMap()}

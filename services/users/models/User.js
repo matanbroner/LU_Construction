@@ -23,6 +23,10 @@ const UserSchema = new Schema({
     role: {
         type: String,
         default: 'Moderator'
+    },
+    color: {
+        type: String,
+        default: '#83ab4a'
     }
 })
 

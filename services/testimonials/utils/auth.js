@@ -13,12 +13,12 @@ const authenticate = (req, res, callback) => {
             method: 'GET'
           }, function (error, response, body) {
             if (!error) {
-                console.log("THERE WAS AN ERROR")
                 if(response.body === 'Unauthorized')
                     callback(false)
                 else callback(true)
                 }
                 else {
+                    console.log("There was an error in authenticating your JWT in the request body.")
                     console.log(error)
                     callback(false)
                 }

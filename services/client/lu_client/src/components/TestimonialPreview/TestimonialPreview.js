@@ -4,7 +4,6 @@ import styles from './TestimonialPreview.css'
 
 
 const TestimonialPreview = (props) =>{
-    console.log(props.item)
 
     return(
         <div id="testimonialPreviewContent">
@@ -17,7 +16,7 @@ const TestimonialPreview = (props) =>{
             name='rating'
             />
             <p>Review by: <strong>{props.item.name}</strong></p>
-            <p>{(props.item.description).substring(0, 200) + (props.item.description.length > 200 ? '...' : null)}</p>
+            <p>{(props.item.description).substring(0, 200) + (props.item.description.length > 200 ? '...' : '')}</p>
         </div>
     )
 }
