@@ -29,6 +29,7 @@ api.post('/create', (req, res, next) => {
     newTestimonial.save(err => {
         if (err)
             res.status(404).json({err: "Error saving testimonial"})
+        else res.status(200).json({saved: "New testimonial has been saved."})
     })
 })
 
