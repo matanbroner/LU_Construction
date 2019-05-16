@@ -1,5 +1,7 @@
 .env
-
+prod.conf
+docker-compose-dev.yml
+Dockerfile.nginx
 ### Node ###
 # Logs
 logs

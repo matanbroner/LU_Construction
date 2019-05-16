@@ -19,7 +19,7 @@ class Toggle extends React.Component {
     render () {
       const className = `toggle-component ${ this.state.toggle ? ' active' : ''}`
       return (
-          <div>
+          <div id="toggleWrap">
               <h6>{this.props.title}</h6>
                 <div
                 className={className}

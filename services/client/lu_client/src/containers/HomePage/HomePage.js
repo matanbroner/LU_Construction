@@ -43,7 +43,7 @@ class HomePage extends React.PureComponent{
 
     fetchTestimonials(){
         superagent
-        .get('/service/testimonials/all')
+        .get('/service/testimonials/featured')
         .then(res => this.setState({testimonials: res.body}, this.setState({loading: false})))
     }
 
@@ -69,7 +69,7 @@ class HomePage extends React.PureComponent{
         return(
             this.state.loading
             ? <Spinner/>
-            : <div>
+            : <div id="homePageWrapper">
                 <div className="bannerimage">
                     <Jumbotron fluid>
                         <Container>

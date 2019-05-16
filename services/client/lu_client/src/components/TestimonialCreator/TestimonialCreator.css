@@ -64,7 +64,7 @@
     color: #757c83;
 }
 
-#testimonialDescription{
+#descriptionDiv > #description{
     width: 80%;
     margin: auto;
 }

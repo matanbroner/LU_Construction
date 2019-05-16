@@ -66,17 +66,15 @@ class TestimonialCreator extends React.PureComponent{
         .send({testimonial: testimonial})
         .end((err, res) => {
             if (err) console.log(err)
+            else this.setState({
+                rating: 0,
+                name: '',
+                projectType: '',
+                email: '',
+                relationship: '',
+                description: ''
+            }, this.forceUpdate())
         })
-    }
-
-    renderSubmittedPanel(){
-        return(
-            <div id="submittedPanelWrapper">
-                <h3>Thanks for submitting your testimonial!</h3>
-                <p>You can expect to see it show on our board in the next few days!</p>
-                <p><FontAwesomeIcon icon={faThumbsUp}/></p>
-            </div>
-        )
     }
 
     render(){
@@ -88,10 +86,7 @@ class TestimonialCreator extends React.PureComponent{
                     Tell us about it!
                 </h3>
                  <div id="reviewwrapper">
-                 {
-                    this.state.submitted 
-                    ? this.renderSubmittedPanel()
-                    : <div>
+                    <div>
                         <StarRatings
                         rating = {this.state.rating}
                         starHoverColor={colors.starsFill}
@@ -101,15 +96,15 @@ class TestimonialCreator extends React.PureComponent{
                         />
                         <form role="form" id="reviewform" onSubmit={this.submitTestimonial}>
                                 <div className="form-group">
-                                    <label id="reviewlabel" for="name">Your name:</label>
+                                    <label id="reviewlabel" htmlFor="name">Your name:</label>
                                     <input onChange={this.updateState} type="name" className="form-control" id="name" placeholder="Enter your name" required/>
                                 </div>
                                 <div className="form-group">
-                                    <label id="reviewlabel" for="email">Your email:</label>
+                                    <label id="reviewlabel" htmlFor="email">Your email:</label>
                                     <input onChange={this.updateState} type="email" className="form-control" id="email" placeholder="Enter your email" required/>
                                 </div>
                                 <div className="form-group">
-                                <label id="reviewlabel" for="projectType">Project type:</label>
+                                <label id="reviewlabel" htmlFor="projectType">Project type:</label>
                                     <select id="projectType" onChange={this.updateState}>
                                         <option selected value="New Construction">New Construction</option>
                                         <option value="Bathroom Remodel">Bathroom Remodel</option>
@@ -119,7 +114,7 @@ class TestimonialCreator extends React.PureComponent{
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                <label id="reviewlabel" for="relationship">Relationship to LU Construction:</label>
+                                <label id="reviewlabel" htmlFor="relationship">Relationship to LU Construction:</label>
                                     <select id="relationship" onChange={this.updateState}>
                                         <option selected value="Client">I hired LU Construction.</option>
                                         <option value="Professional">I was hired by or worked with LU Construction.</option>
@@ -127,15 +122,18 @@ class TestimonialCreator extends React.PureComponent{
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
-                                <div className="form-group">
-                                    <label id="reviewlabel" for="body">Describe your experience:</label>
-                                    <textarea onChange={this.updateState} className="form-control" id="testimonialDescription" rows="3"></textarea>
+                                <div className="form-group" id="descriptionDiv">
+                                    <label id="reviewlabel" htmlFor="description">Describe your experience:</label>
+                                    <textarea onChange={this.updateState} className="form-control" id="description" rows="3"></textarea>
                                 </div>
-                            <button type="submit" id="submitreview" className="btn btn-primary">Submit Testimonial</button>	
+                                {
+                                    this.state.submitted
+                                    ? <button type="submit" disabled id="submitreview" className="btn btn-primary">Thanks For Your Feedback!</button>
+                                    : <button type="submit" id="submitreview" className="btn btn-primary">Submit Testimonial</button>
+                                }	
 
                         </form>
                         </div>
-                 }
                     </div>
                 
             </Container>

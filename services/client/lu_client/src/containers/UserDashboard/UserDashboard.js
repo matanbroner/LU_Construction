@@ -39,6 +39,7 @@ class UserDashboard extends React.PureComponent{
             this.setState({
                 name: response.user.name,
                 role: response.user.role,
+                color: response.user.color || '#83ab4a',
                 loading: false
             })
         }
@@ -58,7 +59,7 @@ class UserDashboard extends React.PureComponent{
                     <Col className="d-none d-lg-block" lg={2} id="userDashSidebar">
                         <div id="userProfile">
                             <Link to='/user_dash'>
-                                <FontAwesomeIcon id="userDashIcon" icon={faUserCircle}/>
+                                <FontAwesomeIcon style={{color: this.state.color}} id="userDashIcon" icon={faUserCircle}/>
                             </Link>
                             <p id="userDashName">{this.state.name}</p>
                             <p id="userDashRole">{this.state.role}</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route} from 'react-router-dom'
+import { Router, BrowserRouter, Route} from 'react-router-dom'
 import ReactGA from 'react-ga';
 import HomePage from './containers/HomePage/HomePage';
 import SignInPage from './containers/SignInPage/SignInPage';

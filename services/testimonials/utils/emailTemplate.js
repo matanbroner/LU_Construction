@@ -1,6 +1,5 @@
 
 const createTemplate = (estimate) => { 
-    console.log(estimate)
     let name = estimate.name
     let constructionType = estimate.projectType
     let body = estimate.description

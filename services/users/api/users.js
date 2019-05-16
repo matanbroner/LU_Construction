@@ -1,7 +1,6 @@
-
 const express = require("express")
 const router = express.Router()
-const bcrypt   = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken")
 const keys = require('../config/keys')
 const passport = require('passport')
@@ -14,38 +13,59 @@ const User = require('../models/User')
 router.use('/google/', require('./google'));
 
 
-router.post('/register', (req, res) => {
-
-    const {errors, isValid} = validateRegisterInput(req.body)
-    if (!isValid)
-        return res.status(400).json(errors)
-
-    User.findOne({ email: req.body.email }).then(user => {
-        if (user){
-            return res.status(400).json({ email: "Email already exists"})
-        } else {
-            const newUser = new User({
-                name: req.body.name,
-                username: req.body.username,
-                email: req.body.email,
-                password: req.body.password
+router.post('/register',
+    passport.authenticate('jwt', {
+        session: false
+    }),
+    (req, res) => {
+        if (req.user.role !== 'Administrator')
+            return res.status(400).json({
+                noAuth: 'You must be an Administrator to regsiter a user.'
             })
 
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err
-                    newUser.password = hash
-                    newUser.save()
-                        .then(user => res.json(user))
-                        .catch(err => console.log(err))
+        const {
+            errors,
+            isValid
+        } = validateRegisterInput(req.body.user)
+        if (!isValid)
+            return res.status(400).json(errors)
+
+        User.findOne({
+            email: req.body.email
+        }).then(user => {
+            if (user) {
+                return res.status(400).json({
+                    email: "Email already exists"
                 })
-            })
-        }
+            } else {
+                const newUser = new User({
+                    name: req.body.user.name,
+                    username: req.body.user.username,
+                    email: req.body.user.email,
+                    password: req.body.user.password,
+                    role: req.body.user.role
+                })
+                if(req.body.user.color)
+                    newUser.color = req.body.user.color
+
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if (err) throw err
+                        newUser.password = hash
+                        newUser.save()
+                            .then(user => res.status(200).json({reg: 'New user has been registered.'}))
+                            .catch(err => console.log(err))
+                    })
+                })
+            }
+        })
     })
-})
 
 router.post('/login', (req, res) => {
-    const {errors, isValid} = validateLoginInput(req.body)
+    const {
+        errors,
+        isValid
+    } = validateLoginInput(req.body)
     if (!isValid)
         return res.status(400).json(errors)
 
@@ -53,13 +73,17 @@ router.post('/login', (req, res) => {
     const password = req.body.password
 
 
-    User.findOne({ username }).then(user => {
+    User.findOne({
+        username
+    }).then(user => {
         if (!user)
-            return res.status(404).json({usernamenotfound: "Username not found"})
+            return res.status(404).json({
+                usernamenotfound: "Username not found"
+            })
 
 
-        bcrypt.compare(password, user.password, function(err, response){
-            if (response){
+        bcrypt.compare(password, user.password, function (err, response) {
+            if (response) {
                 const payload = {
                     id: user.id,
                     username: user.username
@@ -67,34 +91,60 @@ router.post('/login', (req, res) => {
 
                 jwt.sign(
                     payload,
-                    process.env.SECRET_KEY,
-                    {
-                        expiresIn: 31556926 // 1 year in seconds
+                    process.env.SECRET_KEY, {
+                        expiresIn: 86400 // 1 day in seconds
                     },
                     (err, token) => {
-                            res.status(200).json({
+                        res.status(200).json({
                             success: true,
                             token: "Bearer " + token,
                             name: user.name
                         })
                     }
                 )
-            } else if (err){
-                return res 
+            } else if (err) {
+                return res
                     .status(400)
-                    .json({ passwordincorrect: "Password incorrect."})
+                    .json({
+                        passwordincorrect: "Password incorrect."
+                    })
             }
         })
-        
+
     })
 })
 
-router.get('/auth',
-  passport.authenticate('jwt', {session: false}),
-  (req, res) => {
-    const { user } = req;
+router.post('/modify', 
+    passport.authenticate('jwt', {
+        session: false
+    }),
+    (req, res) => {
+        User.findOne({_id: req.body.user._id}, (err, data) => {
+            {
+                let keys = Object.keys(req.body.user).filter(k => k !== '_id')
+            keys.forEach(key => {
+                data[key] = req.body.user[key]
+            })
+            data.save(err => {
+                if (err) res.status(400).json({err: 'Error modifying user', err})
+                else res.status(200).json({mod: 'User has been modified.'})
+            })
+            }
+        })
+    })
 
-    res.status(200).json({ user });
-  });
+router.get('/auth',
+    passport.authenticate('jwt', {
+        session: false
+    }),
+    (req, res) => {
+        const {
+            user
+        } = req;
+
+        res.status(200).json({
+            user
+        });
+    });
 
 module.exports = router;

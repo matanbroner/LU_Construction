@@ -3,8 +3,6 @@ import React from 'react'
 import styles from './ListModule.css'
 import { faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 const uuid = require('uuid')
 
 class ListModule extends React.PureComponent{
@@ -73,7 +71,7 @@ class ListModule extends React.PureComponent{
     render(){
         return (
         <div id="listModuleWrapper">
-            <label for="listModule" id="titleListModule">{this.state.title}</label>
+            <label htmlFor="listModule" id="titleListModule">{this.state.title}</label>
             {this.props.smallText}
             <ul className="list-group listItemsAll">
                 {this.renderItems()}

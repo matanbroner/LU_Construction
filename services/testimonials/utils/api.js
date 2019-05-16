@@ -46,11 +46,11 @@ api.post('/approve', (req, res, next) => {
                 result.approved = true
                 result.save(err => {
                     if (err) return res.status(404).json({err: "Error saving testimonial"})
-                    else return res.status(200).json({approved: "Testimonials have been approved."})
                     })
                 }
                 })
             })
+            return res.status(200).json({approved: "Testimonials have been approved."})
         }
     })
 })
@@ -65,9 +65,29 @@ api.post('/delete', (req, res, next) => {
                 Testimonial.findOneAndDelete({_id: testimonial}, (err, result) => {
                 if (err)
                     return res.status(404).json({err: "Error modifying testimonial"})
-                else return res.status(200).json({approved: "Testimonials have been deleted."})
                 })
             })
+
+            return res.status(200).json({approved: "Testimonials have been deleted."})
+        }
+    })
+})
+
+api.post('/feature', (req, res, next) => {
+    authenticate(req, res , (r) => { 
+        if (!r) 
+        return res.status(400).json({badAuth: 'Invalid or no authorization was provided, action denied.'})
+        else {
+            var { testimonial } = req.body
+            Testimonial.findOne({_id: testimonial._id}, (err, data) => {
+                if (err) return res.status(400).json({err: 'Error featuring this tetsimonials'})
+                else data.featured = testimonial.featured
+                data.save(err => {
+                    if (err) return res.status(400).json({err: 'Error saving this tetsimonials'})
+                })
+            })
+
+            return res.status(200).json({approved: "Testimonials have been modified."})
         }
     })
 })

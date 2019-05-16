@@ -27,7 +27,6 @@ class EstimateCreator extends React.Component{
             email: this.state.email,
             description: this.state.description || 'No further description provided.'
         }
-        console.log(body)
         superagent
         .post(process.env.REACT_APP_TESTIMONIALS_URL + '/estimate/send')
         .set({'Authorization': localStorage.jwtToken})
@@ -51,8 +50,8 @@ class EstimateCreator extends React.Component{
                         <Col xs={12} md={6}>
                             <Row>
                             <Col>
-                                <div class="form-group">
-                                    <label for="name" id="estimateFormLabel">* Your name:</label>
+                                <div className="form-group">
+                                    <label htmlFor="name" id="estimateFormLabel">* Your name:</label>
                                     <input type="text" 
                                     className="form-control" 
                                     id="name"
@@ -65,8 +64,8 @@ class EstimateCreator extends React.Component{
                         </Row>
                         <Row>
                             <Col>
-                                <div class="form-group">
-                                    <label for="email" id="estimateFormLabel">* Your email:</label>
+                                <div className="form-group">
+                                    <label htmlFor="email" id="estimateFormLabel">* Your email:</label>
                                     <input id="email" onChange={this.updateState} type="email" 
                                     className="form-control" id="email" 
                                     placeholder="Enter your email" 
@@ -78,7 +77,7 @@ class EstimateCreator extends React.Component{
                         <Row>
                             <Col>
                                 <div className="form-group">
-                                    <label  for="projectType" id="estimateFormLabel">* Project type:</label>
+                                    <label  htmlFor="projectType" id="estimateFormLabel">* Project type:</label>
                                         <select id="projectType" onChange={this.updateState} required>
                                             <option disabled selected>Select a Project Type</option>
                                             <option value="New Construction">New Construction</option>
@@ -93,7 +92,7 @@ class EstimateCreator extends React.Component{
                         </Col>
                         <Col>
                                 <div id="estimateFormLabel" className="form-group">
-                                    <label id="reviewlabel" for="body">Further Details:</label>
+                                    <label id="reviewlabel" htmlFor="body">Further Details:</label>
                                     <textarea onChange={this.updateState} className="form-control" id="description" rows="10"></textarea>
                                 </div>
                         </Col>

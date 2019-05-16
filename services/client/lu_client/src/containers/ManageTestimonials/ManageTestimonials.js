@@ -6,7 +6,9 @@ import Checkbox from 'react-simple-checkbox'
 import TestimonialItem from '../../components/TestimonialItem/TestimonialItem'
 import Spinner from '../../components/Spinner/Spinner'
 import Dropdown from 'react-bootstrap/Dropdown'
-
+import Toggle from '../../components/Toggle/Toggle'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 var superagent = require('superagent')
 const uuid = require('uuid')
 
@@ -27,7 +29,23 @@ class ManageTestimonials extends React.PureComponent{
     fetchTestimonials(){
         superagent
         .get('/service/testimonials/api/need_approval')
-        .then(res => this.setState({items: res.body, loading: false}))
+        .then(res => this.setState({items: res.body}, () => {
+            superagent
+            .get('/service/testimonials/all')
+            .then(res => {
+                let items = res.body.filter(item => item.approved === true)
+                this.setState({approved: items, loading: false})
+            })
+        }))
+    }
+
+    featureTestimonial(_id, b){
+        let testimonial = {_id: _id, featured: b}
+        superagent
+        .post('/service/testimonials/api/feature')
+        .set({'Authorization': localStorage.jwtToken})
+        .send({ testimonial })
+        .then(res => this.fetchTestimonials())
     }
 
     modifySelected(bool, id){
@@ -39,21 +57,25 @@ class ManageTestimonials extends React.PureComponent{
     }
 
     approveTestimonials(){
-        this.setState({loading: true})
-        superagent
-        .post('/service/testimonials/api/approve')
-        .set({'Authorization': localStorage.jwtToken})
-        .send({ testimonials: this.state.selected })
-        .then(res => this.setState({selected: [], loading: false}, this.fetchTestimonials()))
+        if (this.state.selected.length){
+            this.setState({loading: true})
+            superagent
+            .post('/service/testimonials/api/approve')
+            .set({'Authorization': localStorage.jwtToken})
+            .send({ testimonials: this.state.selected })
+            .then(res => this.setState({selected: [], loading: false}, this.fetchTestimonials()))
+        }
     }
 
     rejectTestimonials(){
-        this.setState({loading: true})
-        superagent
-        .post('/service/testimonials/api/delete')
-        .set({'Authorization': localStorage.jwtToken})
-        .send({ testimonials: this.state.selected })
-        .then(res => this.setState({selected: [], loading: false}, this.fetchTestimonials()))
+        if (this.state.selected.length){
+            this.setState({loading: true})
+            superagent
+            .post('/service/testimonials/api/delete')
+            .set({'Authorization': localStorage.jwtToken})
+            .send({ testimonials: this.state.selected })
+            .then(res => this.setState({selected: [], loading: false}, this.fetchTestimonials()))
+        }
     }
 
     renderActionsDropdown(){
@@ -66,27 +88,43 @@ class ManageTestimonials extends React.PureComponent{
                 <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1" onClick={() => this.approveTestimonials()}>Approve Testimonials</Dropdown.Item>
                     <Dropdown.Item href="#/action-2" onClick={() => this.rejectTestimonials()}>Reject and Dispose</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Feature on Homepage</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         )
     }
 
-    createTestimonials(){
-        return this.state.items.map(item => {
-            return (
-            <Col key={uuid()} xs={12} id="editableTestimonial">
-                <Checkbox
-                id={item._id}
-                size={3}
-                color="#83d04a"
-                checked={this.state.selected.includes(item._id)}
-                onChange={bool => this.modifySelected(bool, item._id)}
-                />
-                <TestimonialItem item={item}/>
-            </Col>
-            )
-        })
+    createTestimonials(approval=false){
+        let items
+        if (approval) items = [].concat(this.state.items)
+        else items = [].concat(this.state.approved)
+        if (items.length)
+        return items.map(item => {
+                return (
+                <Col key={uuid()} xs={12} id="editableTestimonial">
+                    {
+                        approval
+                        ? <Checkbox
+                        id={item._id}
+                        size={3}
+                        color="#83d04a"
+                        checked={this.state.selected.includes(item._id)}
+                        onChange={bool => this.modifySelected(bool, item._id)}
+                        />
+                        : <div id="featureTestimonialWrapper">
+                                <button 
+                                key={uuid()} 
+                                id="featureTestimonialButton" 
+                                className={item.featured ? 'featuredTestimonial' : 'notFeaturedTestimonial'}
+                                onClick={() => this.featureTestimonial(item._id, !item.featured)}
+                                >
+                                    <FontAwesomeIcon icon={item.featured ? faEye : faEyeSlash}/>
+                                </button>
+                            </div>
+                    }
+                    <TestimonialItem item={item}/>
+                </Col>
+                )
+            })
     }
 
     render(){
@@ -106,9 +144,21 @@ class ManageTestimonials extends React.PureComponent{
                 </Row>
 
                 <Row id="allTestimonialsWrapper">
-                    {this.createTestimonials()}
+                    {this.createTestimonials(true)}
+                </Row>
+
+                <Row id="manageTestimonialsTitleRow">
+                    <Col xs={12} lg={4}>
+                        <h2 id="projectsTitle">Manage Approved Testimonials</h2>
+                        <h4 id="featuredNumber">There are {this.state.approved.filter(item => item.featured === true).length} featured items</h4>
+                    </Col>
+                </Row>
+
+                <Row id="allTestimonialsWrapper">
+                    {this.createTestimonials(false)}
                 </Row>
              </Col>
+             
         )
     }
 }

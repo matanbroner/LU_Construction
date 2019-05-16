@@ -210,7 +210,7 @@ class ManageProjects extends React.PureComponent{
                     <Row>
                         <Col>
                             <div className="form-group">
-                            <label for="projectName">Project Create Date:</label>
+                            <label htmlFor="projectName">Project Create Date:</label>
                             <input 
                             type="text" 
                             id="createDate" 
@@ -222,8 +222,8 @@ class ManageProjects extends React.PureComponent{
                             </div>
                         </Col>
                         <Col>
-                            <div class="form-group">
-                                <label for="projectLocation">Project City Location:</label>
+                            <div className="form-group">
+                                <label htmlFor="projectLocation">Project City Location:</label>
                                 <input type="text" 
                                 id="projectLocation"
                                 className="form-control"
@@ -234,8 +234,8 @@ class ManageProjects extends React.PureComponent{
                             </div>
                         </Col>
                         <Col>
-                            <div class="form-group">
-                                <label for="priceMin">Project Price Minimum:</label>
+                            <div className="form-group">
+                                <label htmlFor="priceMin">Project Price Minimum:</label>
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">$</div>
                                 <input type="number" 
@@ -250,8 +250,8 @@ class ManageProjects extends React.PureComponent{
                             </div>
                         </Col>
                         <Col>
-                            <div class="form-group">
-                                <label for="priceMax">Project Price Minimum:</label>
+                            <div className="form-group">
+                                <label htmlFor="priceMax">Project Price Minimum:</label>
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">$</div>
                                 <input type="number" 
@@ -268,8 +268,8 @@ class ManageProjects extends React.PureComponent{
                     </Row>
                     <Row>
                         <Col>
-                            <div class="form-group">
-                                <label for="projectDescription">Project Description:</label>
+                            <div className="form-group">
+                                <label htmlFor="projectDescription">Project Description:</label>
                                 <textarea 
                                 className="form-control" 
                                 id="projectDescription" 

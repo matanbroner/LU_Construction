@@ -1,15 +1,24 @@
 FROM node:8
 
+ENV NPM_CONFIG_LOGLEVEL warn
+ARG app_env
+ENV APP_ENV $app_env
+
 WORKDIR /usr/src/app
 
 COPY package.json ./
 
 RUN npm install
 
-# If you are building your code for production
-# RUN npm ci --only=production
-
 COPY . .
 
-EXPOSE 5000
-CMD [ "npm", "start" ]
+CMD if [ ${APP_ENV} = production ]; \
+	then \
+	npm install -g http-server && \
+	npm run build && \
+	node index.js; \
+	else \
+	npm run start; \
+	fi
+
+EXPOSE 3000

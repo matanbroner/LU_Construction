@@ -5,7 +5,8 @@ import styles from './TestimonialsPage.css'
 import TestimonialCreator from '../../components/TestimonialCreator/TestimonialCreator'
 import TestimonialItem from '../../components/TestimonialItem/TestimonialItem'
 import Spinner from '../../components/Spinner/Spinner'
-
+import MediaQuery from 'react-responsive'
+import ScrollableSection from '../../components/ScrollableSection/ScrollableSection'
 import { Row, Col } from 'react-bootstrap'
 var superagent = require('superagent')
 const uuid = require('uuid')
@@ -47,9 +48,15 @@ class TestimonialsPage extends React.PureComponent{
                     <Col id="testimonialCollection">
                     <h2 id="testimonialsHeader">Our customers love us!</h2>
                             <Row id="testimonialColumn">
-                    
-                                {this.renderTestimonials()}
-                            
+                            <MediaQuery query="(max-device-width: 1224px)">
+                                <ScrollableSection>
+                                    {this.renderTestimonials()}
+                                </ScrollableSection>
+                            </MediaQuery>
+
+                            <MediaQuery query="(min-device-width: 1225px)">
+                                    {this.renderTestimonials()}
+                            </MediaQuery>                            
                             </Row>                 
                     </Col>
                     <Col md={5} id="createPanel">

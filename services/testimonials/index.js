@@ -4,11 +4,17 @@ const mongoose = require('mongoose')
 
 require('dotenv').config()
 
-mongoose.connect('mongodb://mongo:' + process.env.MONGO_PORT + '/testimonials')
-  .catch(err => {
-    console.log(err)
-  })
+const db = `mongodb://mongo:${process.env.MONGO_PORT}/testimonials`;
 
+// Connect to MongoDB
+mongoose.connect(db, {
+    "auth": { "authSource": "admin" },
+    "user": process.env.MONGO_USER,
+    "pass": process.env.MONGO_PASS,
+    "useMongoClient": true
+  })
+  .then(() => console.log("MongoDB successfully connected to Testimonials"))
+  .catch(err => console.log(err));
 var app = express()
 
 app.use(express.json());
@@ -41,7 +47,7 @@ app.get('/all', function(req, res){
 
 // GET ALL FEATURED PROJECTS
 app.get('/featured', (req, res, next) => {
-  Project.find({featured: true}, (err, projects) => {
+  Testimonial.find({featured: true}, (err, projects) => {
       if (err) return res.status(404)
       if (!projects) return res.status(200).json([])
       else return res.status(200).json(projects)

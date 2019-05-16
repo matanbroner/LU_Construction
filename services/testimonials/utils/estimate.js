@@ -28,8 +28,6 @@ var transporter = nodemailer.createTransport({
 estimate.post('/send', (req, res, next) => {
 
     var newEstimate = req.body
-    console.log("REQ BODY")
-    console.log(newEstimate)
 
     var mailOptions = {
         from: 'lu_construction_estimates@yahoo.com',
