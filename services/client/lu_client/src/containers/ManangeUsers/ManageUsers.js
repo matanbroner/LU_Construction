@@ -45,7 +45,7 @@ class ManageUsers extends React.PureComponent{
         superagent
         .get('/service/users/all')
         .set({'Authorization': localStorage.jwtToken})
-        .then(res => {this.setState({loading: false, users: res.body}); console.log(res.body)})
+        .then(res => {this.setState({loading: false, users: res.body})})
     }
 
     modifyUser(user, arg, value){
@@ -99,7 +99,12 @@ class ManageUsers extends React.PureComponent{
             .post(process.env.REACT_APP_USERS_URL + '/api/register')
             .set({'Authorization': localStorage.jwtToken})
             .send({ user: this.state.newUser })
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.statusCode === 200){
+                    this.fetchUsers()
+                    this.newUserDialog.hide()
+                }
+            })
     }
 
     renderUsers(){
