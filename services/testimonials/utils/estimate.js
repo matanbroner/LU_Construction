@@ -31,7 +31,7 @@ estimate.post('/send', (req, res, next) => {
 
     var mailOptions = {
         from: 'lu_construction_estimates@yahoo.com',
-        to: 'matanbroner@gmail.com',
+        to: 'appointments@luconstruction.com',
         subject: 'LU Construction Estimate Request',
         html: createTemplate(newEstimate)
       };

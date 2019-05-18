@@ -106,7 +106,8 @@ class TestimonialCreator extends React.PureComponent{
                                 <div className="form-group">
                                 <label id="reviewlabel" htmlFor="projectType">Project type:</label>
                                     <select id="projectType" onChange={this.updateState}>
-                                        <option selected value="New Construction">New Construction</option>
+                                        <option disabled selected>Choose an project type</option>
+                                        <option value="New Construction">New Construction</option>
                                         <option value="Bathroom Remodel">Bathroom Remodel</option>
                                         <option value="Kitchen Remodel">Kitchen Remodel</option>
                                         <option value="Garage Conversion">Garage Conversion</option>
@@ -116,7 +117,8 @@ class TestimonialCreator extends React.PureComponent{
                                 <div className="form-group">
                                 <label id="reviewlabel" htmlFor="relationship">Relationship to LU Construction:</label>
                                     <select id="relationship" onChange={this.updateState}>
-                                        <option selected value="Client">I hired LU Construction.</option>
+                                        <option disabled selected>Choose an option</option>
+                                        <option value="Client">I hired LU Construction.</option>
                                         <option value="Professional">I was hired by or worked with LU Construction.</option>
                                         <option value="Prospect Client">I received an estimate from LU Construction.</option>
                                         <option value="Other">Other</option>
