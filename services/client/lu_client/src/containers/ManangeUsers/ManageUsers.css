@@ -2,6 +2,10 @@
     margin: 40px 30px;
 }
 
+#manageUsersTitle{
+    color: #777c81;
+}
+
 #userTableWrapper{
     width: 90%;
     min-height: 60vh;

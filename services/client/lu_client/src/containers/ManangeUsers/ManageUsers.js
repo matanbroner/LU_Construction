@@ -305,7 +305,7 @@ class ManageUsers extends React.PureComponent{
             ? <Spinner/>
             : <Col>
                 <Row id="manageUsersTitleRow">
-                    <h1>Manage Users</h1>
+                    <h1 id="manageUsersTitle">Manage Users</h1>
                 </Row>
                 <Row>
                     <div id="userTableWrapper">
