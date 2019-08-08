@@ -32,7 +32,7 @@ class ContactPage extends React.PureComponent{
             <span id="mobileContactInfo">
                 <FontAwesomeIcon icon={faPhone}/> (888) 535-5206
                 <hr/>
-                <FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95117
+                <FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95128
                 <hr/>
                 <FontAwesomeIcon icon={faEnvelope}/> appointments@luconstructions.com
                 <hr/>
