@@ -21,7 +21,7 @@ class ContactPage extends React.PureComponent{
         return(
             <span id="contactInfo">
                 <FontAwesomeIcon icon={faPhone}/> (888) 535-5206
-                <span id="seperatorContact"><FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95117</span>
+                <span id="seperatorContact"><FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95128</span>
                 <FontAwesomeIcon icon={faEnvelope}/> appointments@luconstruction.com
             </span>
         )
@@ -34,7 +34,7 @@ class ContactPage extends React.PureComponent{
                 <hr/>
                 <FontAwesomeIcon icon={faMap}/> 1101 S Winchester Blvd, San Jose, CA 95117
                 <hr/>
-                <FontAwesomeIcon icon={faEnvelope}/> appointments@luconstruction.com
+                <FontAwesomeIcon icon={faEnvelope}/> appointments@luconstructions.com
                 <hr/>
             </span>
         )
