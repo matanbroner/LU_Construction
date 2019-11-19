@@ -31,7 +31,7 @@ const BottomBar = () => {
                     <a href={`mailto:appointments@luconstruction.com`}>
                     <button id="submitContactAction">
                         <span id='infoTag'><FontAwesomeIcon icon={faEnvelope}/>
-                            <MediaQuery query="(min-width: 1100px)">appointments@luconstruction.com</MediaQuery>
+                            <MediaQuery query="(min-width: 1100px)">appointments@luconstructions.com</MediaQuery>
                         </span>
                     </button>
                     </a>
