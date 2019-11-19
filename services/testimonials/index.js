@@ -8,9 +8,6 @@ const db = `mongodb://mongo:${process.env.MONGO_PORT}/testimonials`;
 
 // Connect to MongoDB
 mongoose.connect(db, {
-    "auth": { "authSource": "admin" },
-    "user": process.env.MONGO_USER,
-    "pass": process.env.MONGO_PASS,
     "useMongoClient": true
   })
   .then(() => console.log("MongoDB successfully connected to Testimonials"))
